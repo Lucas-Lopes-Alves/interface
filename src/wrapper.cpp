@@ -32,14 +32,9 @@ int Window::WindowShouldClose(){
     return glfwWindowShouldClose(this->window);
 }
 
-void Window::SwapBuffer() {
+void Window::SwapBuffers() {
     glfwSwapBuffers(this->window);
 }
-
-void Window::PollEvents(){
-    glfwPollEvents();
-}
-
 
 
 GlobalWindow::GlobalWindow(){
@@ -50,4 +45,8 @@ GlobalWindow::GlobalWindow(){
 
 GlobalWindow::~GlobalWindow(){
     glfwTerminate();
+}
+
+void GlobalWindow::PollEvents(){
+    glfwPollEvents();
 }

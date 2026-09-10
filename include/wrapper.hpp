@@ -22,9 +22,8 @@ public:
 
     int WindowShouldClose();
 
-    void SwapBuffer();
+    void SwapBuffers();
 
-    void PollEvents();
 };
 
 class GlobalWindow{
@@ -33,4 +32,6 @@ public:
     GlobalWindow();
 
     ~GlobalWindow();
+    
+    void PollEvents();
 };

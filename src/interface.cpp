@@ -1,4 +1,4 @@
-#include <GLFW/glfw3.h>
+#include "wrapper.hpp"
 #include <iostream>
 
 void framebuffer_change(GLFWwindow* window, int width, int height)
@@ -10,29 +10,18 @@ void framebuffer_change(GLFWwindow* window, int width, int height)
 
 int main(int argc, char** argv)
 {
-    if (!glfwInit())
-    {
-        std::cerr << "Falha ao inicializar" << "\n";
-        return -1;
-    }
 
-    GLFWwindow * janela = glfwCreateWindow(500, 500, "Janela", nullptr, nullptr);
-    if (!janela)
-    {
-        std::cerr << "Erro ao criar a janela" << "\n";
-        glfwTerminate();
-        return -1;
-    }
+    GlobalWindow global;
+    
+    Window janela(200,200, std::string("Ola"));
 
-    glfwMakeContextCurrent(janela);
-    glfwSetFramebufferSizeCallback(janela, framebuffer_change);
+    janela.MakeContextCurrent();
+    janela.setFramebufferSizeCallback(framebuffer_change);
 
-    while (!glfwWindowShouldClose(janela)){
+    while (!janela.WindowShouldClose()){
         
-        glfwSwapBuffers(janela);
-        glfwPollEvents();
+        janela.SwapBuffers();
+        global.PollEvents();
     }
-
-    glfwTerminate();
     return 0;
 }
