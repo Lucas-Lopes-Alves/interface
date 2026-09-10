@@ -1,5 +1,7 @@
-FLAGS = -I deps -L deps/glfw/lib-mingw-w64 -lglfw3 -lgdi32 -lopengl32
+FLAGS = -Iinclude -lglfw -lGL
 CC = g++
 
+$(shell mkdir -p bin)
+
 all:
-	$(CC) src/interface.cpp -o bin/interface.exe $(FLAGS)
+	$(CC) src/interface.cpp -o bin/interface $(FLAGS)
