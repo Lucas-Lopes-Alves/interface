@@ -5,6 +5,7 @@
 #include <string>
 #include "wrapper.hpp"
 
+// Window implementations
 
 // Constructor
 Window::Window(int width,int height, const std::string& title): width(width), height(height), title(title){
@@ -35,7 +36,7 @@ void Window::swapBuffers() {
     glfwSwapBuffers(this->window);
 }
 
-
+// GlobalWindow implementations
 GlobalWindow::GlobalWindow(){
     if (!glfwInit()){
         throw std::runtime_error("Error initializing the global configuration");

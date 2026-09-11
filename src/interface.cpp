@@ -1,3 +1,5 @@
+// #include "glad/gl.h"
+#include <GL/gl.h>
 #include "wrapper.hpp"
 #include <iostream>
 
@@ -13,17 +15,31 @@ int main(int argc, char** argv)
 
     GlobalWindow global;
     
-    Window janela(200,200, std::string("Ola"));
+    Window janela(1920/2,1080/2, std::string("Ola"));
 
     global.loadOpenGL();
     janela.setFramebufferSizeCallback(framebuffer_change);
 
-    
-
     while (!janela.windowShouldClose()){
+        global.pollEvents();
+        glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+        
+        glBegin(GL_LINES);
+            glVertex2f(-0.1f, 0.1f);
+            glVertex2f(0.1f, 0.1f);
+
+            glVertex2f(0.1f, 0.1f);
+            glVertex2f(0.1f, -0.1f);
+
+            glVertex2f(-0.1f, 0.1f);
+            glVertex2f(-0.1f, -0.1f);
+            
+            glVertex2f(0.1f, -0.1f);
+            glVertex2f(-0.1f, -0.1f);
+        glEnd();
         
         janela.swapBuffers();
-        global.pollEvents();
     }
     return 0;
 }

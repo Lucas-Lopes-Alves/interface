@@ -22,3 +22,6 @@ build/obj/%.o: src/%.cpp
 build/obj/%.o: src/%.c
 	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	rm -rf build/*
