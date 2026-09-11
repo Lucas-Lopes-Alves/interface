@@ -1,5 +1,4 @@
 .clangd
 *.json
-bin/
 .*/
-deps/
+build/

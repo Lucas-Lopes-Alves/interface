@@ -15,13 +15,15 @@ int main(int argc, char** argv)
     
     Window janela(200,200, std::string("Ola"));
 
-    janela.MakeContextCurrent();
+    global.loadOpenGL();
     janela.setFramebufferSizeCallback(framebuffer_change);
 
-    while (!janela.WindowShouldClose()){
+    
+
+    while (!janela.windowShouldClose()){
         
-        janela.SwapBuffers();
-        global.PollEvents();
+        janela.swapBuffers();
+        global.pollEvents();
     }
     return 0;
 }

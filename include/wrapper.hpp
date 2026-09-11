@@ -18,11 +18,9 @@ public:
     
     void setFramebufferSizeCallback(GLFWframebuffersizefun func);
 
-    void MakeContextCurrent();
+    int windowShouldClose();
 
-    int WindowShouldClose();
-
-    void SwapBuffers();
+    void swapBuffers();
 
 };
 
@@ -33,5 +31,7 @@ public:
 
     ~GlobalWindow();
     
-    void PollEvents();
+    void pollEvents();
+
+    void loadOpenGL();
 };

@@ -1,8 +1,24 @@
-FLAGS = -Iinclude -lglfw -lGL
-CC = g++
-SRC = src/interface.cpp src/wrapper.cpp
+CXX = g++
+CC = gcc
 
-$(shell mkdir -p bin)
+LDFLAGS = -lglfw -lGL
+CXXFLAGS = -Iinclude
+CFLAGS = -Iinclude
 
-all:
-	$(CC) $(SRC) -o bin/interface $(FLAGS)
+SRCS_C = $(shell find src -type f -name "*.c")
+SRCS_CPP = $(shell find src -type f -name "*.cpp")
+
+OBJS = $(patsubst src/%.c, build/obj/%.o, $(SRCS_C))
+OBJS += $(patsubst src/%.cpp, build/obj/%.o, $(SRCS_CPP))
+
+all: $(OBJS)
+	mkdir -p build/bin
+	$(CXX) $(OBJS) -o build/bin/interface $(LDFLAGS)
+
+build/obj/%.o: src/%.cpp
+	mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+	
+build/obj/%.o: src/%.c
+	mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@

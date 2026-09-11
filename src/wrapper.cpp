@@ -1,5 +1,6 @@
-#include <GL/gl.h>
+#include "glad/gl.h"
 #include <GLFW/glfw3.h>
+#include <GL/gl.h>
 #include <stdexcept>
 #include <string>
 #include "wrapper.hpp"
@@ -13,6 +14,8 @@ Window::Window(int width,int height, const std::string& title): width(width), he
     if (!this->window){
         throw std::runtime_error("Error creating the window");
     }
+    
+    glfwMakeContextCurrent(this->window);
 }
 
 // Destructor
@@ -24,15 +27,11 @@ void Window::setFramebufferSizeCallback(GLFWframebuffersizefun func){
     glfwSetFramebufferSizeCallback(this->window, func);
 }
 
-void Window::MakeContextCurrent(){
-    glfwMakeContextCurrent(this->window);
-}
-
-int Window::WindowShouldClose(){
+int Window::windowShouldClose(){
     return glfwWindowShouldClose(this->window);
 }
 
-void Window::SwapBuffers() {
+void Window::swapBuffers() {
     glfwSwapBuffers(this->window);
 }
 
@@ -47,6 +46,10 @@ GlobalWindow::~GlobalWindow(){
     glfwTerminate();
 }
 
-void GlobalWindow::PollEvents(){
+void GlobalWindow::pollEvents(){
     glfwPollEvents();
+}
+
+void GlobalWindow::loadOpenGL(){
+    gladLoadGL(glfwGetProcAddress);
 }
