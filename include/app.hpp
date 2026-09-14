@@ -14,6 +14,4 @@ class App{
     App(const App&&) = delete;
     App& operator=(App&) = delete;
     App& operator=(App&&) = delete;
-
-    
 };

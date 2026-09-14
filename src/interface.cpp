@@ -2,6 +2,7 @@
 #include "wrapper.hpp"
 #include <iostream>
 #include "glFunc.hpp"
+#include "app.hpp"
 
 void framebuffer_change(GLFWwindow* window, int width, int height) {
     glViewport(0, 0, width, height);

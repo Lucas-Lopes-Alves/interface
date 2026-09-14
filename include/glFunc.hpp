@@ -3,7 +3,7 @@
 #include "glad/gl.h"
 #include <cstddef>
 
-GLuint createVBO(const void* vertices, GLsizeiptr size);
+GLuint createVBO(const void* vertices, std::size_t size);
 
 GLuint createVAO();
 
