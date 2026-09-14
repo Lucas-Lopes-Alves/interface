@@ -1,7 +1,7 @@
 CXX = g++
 CC = gcc
 
-LDFLAGS = -lglfw -lGL
+LDFLAGS = -lglfw
 CXXFLAGS = -Iinclude
 CFLAGS = -Iinclude
 

@@ -1,6 +1,5 @@
 #include "glad/gl.h"
 #include <GLFW/glfw3.h>
-#include <GL/gl.h>
 #include <stdexcept>
 #include <string>
 #include "wrapper.hpp"
@@ -28,7 +27,7 @@ void Window::setFramebufferSizeCallback(GLFWframebuffersizefun func){
     glfwSetFramebufferSizeCallback(this->window, func);
 }
 
-int Window::windowShouldClose(){
+bool Window::windowShouldClose(){
     return glfwWindowShouldClose(this->window);
 }
 
