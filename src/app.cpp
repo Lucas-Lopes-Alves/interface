@@ -16,7 +16,7 @@ App::~App(){
 void App::run(){
     while(!window.windowShouldClose()){
         window.swapBuffers();
-        
+        this->render();
         global.pollEvents();
     }
 }

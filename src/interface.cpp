@@ -52,13 +52,13 @@ int main()
             -0.5f, -0.5f   // inferior esquerdo
     };
 
-    GLuint VBO = createVBO(vertices, sizeof(vertices));
+    GLuint VBO = OpenGL::createVBO(vertices, sizeof(vertices));
 
-    GLuint VAO = createVAO(0,2,2*sizeof(float));
+    GLuint VAO = OpenGL::createVAO(0,2,2*sizeof(float));
 
-    GLuint vertexShader = createVertexShader(vertexShaderSource, 1);
+    GLuint vertexShader = OpenGL::createVertexShader(vertexShaderSource, 1);
 
-    GLuint fragmentShader = createFragmentShader(fragmentShaderSource, 1);
+    GLuint fragmentShader = OpenGL::createFragmentShader(fragmentShaderSource, 1);
 
     GLuint shaderProgram = glCreateProgram();
 
