@@ -65,5 +65,5 @@ public:
 
     void loadOpenGL();
 
-    void setContext(Window);
+    void setContext(Window&);
 };

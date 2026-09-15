@@ -26,6 +26,8 @@ public:
 
     void run();
 
+    virtual void render() = 0;
+
 };
 
 #endif

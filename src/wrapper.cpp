@@ -69,6 +69,6 @@ void WindowConfig::loadOpenGL(){
     gladLoadGL(glfwGetProcAddress);
 }
 
-void WindowConfig::setContext(Window win){
+void WindowConfig::setContext(Window& win){
     glfwMakeContextCurrent(win.window);
 }

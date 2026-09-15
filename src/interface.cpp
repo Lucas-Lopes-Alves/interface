@@ -37,8 +37,8 @@ int main()
 
     Window janela(800,500, std::string("Ola"));
 
+    global.setContext(janela);
     global.loadOpenGL();
-
 
     float vertices[]= {
         // triângulo 1
@@ -54,7 +54,7 @@ int main()
 
     GLuint VBO = createVBO(vertices, sizeof(vertices));
 
-    GLuint VAO = createVAO();
+    GLuint VAO = createVAO(0,2,2*sizeof(float));
 
     GLuint vertexShader = createVertexShader(vertexShaderSource, 1);
 

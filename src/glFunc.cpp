@@ -16,18 +16,18 @@ GLuint createVBO(const void* vertices, std::size_t size){
     return VBO;
 }
 
-GLuint createVAO(){
+GLuint createVAO(int location = 0, int quantity = 0, int size = 0, std::size_t start =0){
     GLuint VAO;
     glGenVertexArrays(1, &VAO);
     glBindVertexArray(VAO);
 
     glVertexAttribPointer(
-        0,                  // location
-        2,                  // quantidade de valores
+        location,                  // location
+        quantity,                  // quantidade de valores
         GL_FLOAT,           // tipo
         GL_FALSE,
-        2 * sizeof(float),  // tamanho de cada vértice
-        (void*)0            // offset
+        size,  // tamanho de cada vértice
+        (void*)start            // offset
     );
     glEnableVertexAttribArray(0);
 
