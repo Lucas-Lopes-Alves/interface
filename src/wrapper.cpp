@@ -14,8 +14,13 @@ Window::Window(int width,int height, const std::string& title): width(width), he
     if (!this->window){
         throw std::runtime_error("Error creating the window");
     }
-    
-    glfwMakeContextCurrent(this->window);
+
+}
+
+Window::Window(Window&& other) noexcept
+: width(other.width), height(other.height),
+  title(std::move(other.title)), window(other.window){
+    other.window = nullptr;
 }
 
 // Destructor
@@ -23,6 +28,16 @@ Window::~Window(){
     glfwDestroyWindow(this->window);
 }
 
+Window& Window::operator=(Window&& other)noexcept{
+    this->height = other.height;
+    this->width = other.width;
+    this->title = other.title;
+    this->window = other.window;
+    
+    other.window = nullptr;
+    other.~Window();
+    return *this;
+}
 void Window::setFramebufferSizeCallback(GLFWframebuffersizefun func){
     glfwSetFramebufferSizeCallback(this->window, func);
 }
@@ -36,20 +51,24 @@ void Window::swapBuffers() {
 }
 
 // GlobalWindow implementations
-GlobalWindow::GlobalWindow(){
+WindowConfig::WindowConfig(){
     if (!glfwInit()){
         throw std::runtime_error("Error initializing the global configuration");
     }
 }
 
-GlobalWindow::~GlobalWindow(){
+WindowConfig::~WindowConfig(){
     glfwTerminate();
 }
 
-void GlobalWindow::pollEvents(){
+void WindowConfig::pollEvents(){
     glfwPollEvents();
 }
 
-void GlobalWindow::loadOpenGL(){
+void WindowConfig::loadOpenGL(){
     gladLoadGL(glfwGetProcAddress);
+}
+
+void WindowConfig::setContext(Window win){
+    glfwMakeContextCurrent(win.window);
 }

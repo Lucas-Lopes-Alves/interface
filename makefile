@@ -19,7 +19,7 @@ all: $(TARGET)
 
 $(TARGET): $(OBJS)
 	mkdir -p $(dir $@)
-	$(CXX) $> $(LDFLAGS) -o $@ $(LDLIBS)
+	$(CXX) $^ $(LDFLAGS) -o $@ $(LDLIBS)
 
 build/obj/%.o: src/%.cpp
 	mkdir -p $(dir $@)
