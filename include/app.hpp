@@ -3,18 +3,18 @@
 
 // #include "glad/gl.h"
 // #include "glFunc.hpp"
+#include "renderer.hpp"
 #include <GLFW/glfw3.h>
 #include "wrapper.hpp"
 #include "elements/baseObject.hpp"
 #include <string>
-#include <vector>
 
 
 class App{
 private:
     WindowConfig global;
     Window mainWindow;
-    std::vector<baseObject> children;
+    Renderer loader;
     
     void ViewportResizeCallback(GLFWframebuffersizefun);
 public:

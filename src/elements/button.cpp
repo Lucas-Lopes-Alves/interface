@@ -1,7 +1,6 @@
-#include "glFunc.hpp"
 #include "elements/button.hpp"
-#include "wrapper.hpp"
+#include "renderer.hpp"
 
-void Button::draw(Window& target, unsigned int VBO){
+void Button::draw(Renderer&){
     
 }

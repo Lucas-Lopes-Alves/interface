@@ -2,19 +2,21 @@
 #include "glad/gl.h"
 #include "glFunc.hpp"
 
-GLuint OpenGL::createVBO(const void* vertices, std::size_t size){
+GLuint OpenGL::createVBO(){
     GLuint VBO;
     glGenBuffers(1, &VBO);
+    return VBO;
+}
+
+void uploadVBO(GLuint VBO,const void* data, std::size_t size){
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     
     glBufferData(
         GL_ARRAY_BUFFER,
         size,
-        vertices,
+        data,
         GL_STATIC_DRAW
     );
-
-    return VBO;
 }
 
 GLuint OpenGL::createVAO(int location, int quantity, int size, std::size_t start){

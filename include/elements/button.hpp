@@ -3,7 +3,13 @@
 
 #include "elements/baseObject.hpp"
 
+class Renderer;
+
 class Button : public baseObject{
+public:
+    Button() = default;
+
+protected:
     float vertices[12] = {
         -0.5f, 0.5f,
         0.5f, 0.5f,
@@ -13,12 +19,7 @@ class Button : public baseObject{
         -0.5f, -0.5f,
         -0.5f, 0.5f
     };
-
-public:
-
-    Button() = default;
-
-    void draw(Window& target, unsigned int VBO) override;
+    void draw(Renderer&) override;
 };
 
 #endif

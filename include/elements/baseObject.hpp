@@ -1,14 +1,17 @@
-#ifndef _BASE_OBJECT_
-#define _BASE_OBJECT_
+#ifndef __BASE_OBJECT__
+#define __BASE_OBJECT__
 
 #include "vectors.hpp"
-#include "wrapper.hpp"
+
+class Renderer;
 
 class baseObject{
 protected:
+    friend Renderer;
     Vec::Vector2 size;
     Vec::Vector2 position;
     Vec::Vector4 color;
+    virtual void draw(Renderer&){}
     
 public:
     baseObject() = default;
@@ -25,7 +28,6 @@ public:
 
     Vec::Vector4 getColor();
 
-    virtual void draw(Window& target, unsigned int VBO);
 };
 
 #endif

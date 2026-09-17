@@ -5,7 +5,9 @@
 #include <cstddef>
 
 namespace OpenGL{
-    GLuint createVBO(const void* vertices, std::size_t size);
+    GLuint createVBO();
+
+    void uploadVBO(GLuint VBO,const void* data, std::size_t size);
     
     GLuint createVAO(int location = 0, int quantity = 0, int size = 0, std::size_t start =0);
     

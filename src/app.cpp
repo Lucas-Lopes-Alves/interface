@@ -4,7 +4,7 @@
 #include <string>
 
 App::App(int width, int height, std::string title)
-: global(), mainWindow(width,height,title){
+: global(), loader(), mainWindow(width,height,title){
     global.loadOpenGL();
 }
 
@@ -26,7 +26,7 @@ void App::ViewportResizeCallback(GLFWframebuffersizefun func){
 }
 
 void App::addButton(baseObject object){
-    children.push_back(object);
+    loader.submit(object);
 }
 
 void App::render(){
