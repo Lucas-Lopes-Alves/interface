@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __GLFUNC__
+#define __GLFUNC__
 
 #include "glad/gl.h"
 #include <cstddef>
@@ -12,3 +13,5 @@ namespace OpenGL{
     
     GLuint createFragmentShader(const char*& source, std::size_t count);
 }
+
+#endif

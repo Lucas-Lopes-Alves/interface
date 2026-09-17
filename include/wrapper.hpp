@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __GLFW_WRAPPER__
+#define __GLFW_WRAPPER__
 
 #include <GLFW/glfw3.h>
 #include <string>
@@ -67,3 +68,5 @@ public:
 
     void setContext(Window&);
 };
+
+#endif

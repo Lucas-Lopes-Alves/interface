@@ -5,16 +5,18 @@
 // #include "glFunc.hpp"
 #include <GLFW/glfw3.h>
 #include "wrapper.hpp"
+#include "elements/baseObject.hpp"
 #include <string>
+#include <vector>
 
-typedef GLFWframebuffersizefun ViewportSizeCallback;
 
 class App{
 private:
     WindowConfig global;
-    Window window;
-
-    void ViewportResizeCallback(ViewportSizeCallback);
+    Window mainWindow;
+    std::vector<baseObject> children;
+    
+    void ViewportResizeCallback(GLFWframebuffersizefun);
 public:
     App(int width,int height, std::string title);
     ~App();
@@ -26,8 +28,11 @@ public:
 
     void run();
 
-    virtual void render() = 0;
+    virtual void setElements() = 0;
 
+    void addButton(baseObject object);
+
+    void render();
 };
 
 #endif

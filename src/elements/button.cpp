@@ -1,9 +1,7 @@
+#include "glFunc.hpp"
 #include "elements/button.hpp"
+#include "wrapper.hpp"
 
-void baseButton::setPosition(Vec::Vector2 value){
-    position = value;
-}
-
-void baseButton::setSize(Vec::Vector2 value){
-    size = value;
+void Button::draw(Window& target, unsigned int VBO){
+    
 }

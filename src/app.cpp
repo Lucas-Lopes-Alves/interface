@@ -4,23 +4,31 @@
 #include <string>
 
 App::App(int width, int height, std::string title)
-: global(), window(width,height,title){
+: global(), mainWindow(width,height,title){
     global.loadOpenGL();
 }
 
 App::~App(){
-    window.~Window();
+    mainWindow.~Window();
     global.~WindowConfig();
 }
 
 void App::run(){
-    while(!window.windowShouldClose()){
-        window.swapBuffers();
-        this->render();
+    while(!mainWindow.windowShouldClose()){
+        mainWindow.swapBuffers();
+        this->setElements();
         global.pollEvents();
     }
 }
 
-void App::ViewportResizeCallback(ViewportSizeCallback func){
-    window.setFramebufferSizeCallback(func);
+void App::ViewportResizeCallback(GLFWframebuffersizefun func){
+    mainWindow.setFramebufferSizeCallback(func);
+}
+
+void App::addButton(baseObject object){
+    children.push_back(object);
+}
+
+void App::render(){
+    
 }

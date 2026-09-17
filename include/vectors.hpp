@@ -1,3 +1,6 @@
+#ifndef __VECTORS__
+#define __VECTORS__
+
 namespace Vec{
     struct Vector2{
         float x,y;
@@ -28,4 +31,21 @@ namespace Vec{
 
         Vector4& operator=(Vector4& other);
     };
+
+    struct Vector3{
+        float x,y,z;
+
+        Vector3(float x ,float y, float z,float a): x(x), y(y), z(z){}
+        Vector3(): x(0), y(0), z(0) {}
+        
+        Vector3& operator+(Vector3& other);
+    
+        Vector3& operator*(float other);
+    
+        Vector3& operator*(Vector3& other);
+
+        Vector3& operator=(Vector3& other);
+    };
 }
+
+#endif

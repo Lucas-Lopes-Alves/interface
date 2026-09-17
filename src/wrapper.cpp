@@ -35,7 +35,6 @@ Window& Window::operator=(Window&& other)noexcept{
     this->window = other.window;
     
     other.window = nullptr;
-    other.~Window();
     return *this;
 }
 void Window::setFramebufferSizeCallback(GLFWframebuffersizefun func){

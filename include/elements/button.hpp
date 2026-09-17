@@ -1,6 +1,9 @@
-#include "vectors.hpp"
+#ifndef __BUTTON__
+#define __BUTTON__
 
-class baseButton{
+#include "elements/baseObject.hpp"
+
+class Button : public baseObject{
     float vertices[12] = {
         -0.5f, 0.5f,
         0.5f, 0.5f,
@@ -10,12 +13,12 @@ class baseButton{
         -0.5f, -0.5f,
         -0.5f, 0.5f
     };
-    Vec::Vector2 size;
-    Vec::Vector2 position;
-public: 
-    baseButton();
 
-    void setPosition(Vec::Vector2);
+public:
 
-    void setSize(Vec::Vector2);
+    Button() = default;
+
+    void draw(Window& target, unsigned int VBO) override;
 };
+
+#endif
