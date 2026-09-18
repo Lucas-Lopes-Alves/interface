@@ -34,7 +34,7 @@ Window& Window::operator=(Window&& other)noexcept{
         glfwDestroyWindow(window);
         this->height = other.height;
         this->width = other.width;
-        this->title = other.title;
+        this->title = std::move(other.title);
         this->window = other.window;
     
         other.window = nullptr;
