@@ -54,7 +54,7 @@ int main()
     GLuint VBO = OpenGL::createVBO();
     OpenGL::uploadVBO(VBO, &vertices, sizeof(vertices));
     
-    GLuint VAO = OpenGL::createVAO(0,2,2*sizeof(float));
+    GLuint VAO = OpenGL::createVAO(0,2,2*sizeof(float),0);
 
     GLuint vertexShader = OpenGL::createVertexShader(vertexShaderSource, 1);
 

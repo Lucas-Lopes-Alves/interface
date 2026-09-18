@@ -1,5 +1,5 @@
-#ifndef APP_CLASS
-#define APP_CLASS
+#ifndef APP_CLASS__
+#define APP_CLASS__
 
 // #include "glad/gl.h"
 // #include "glFunc.hpp"
@@ -21,7 +21,7 @@ private:
     void ViewportResizeCallback(GLFWframebuffersizefun);
 public:
     App(int width,int height, std::string title);
-    ~App() = default;
+    virtual ~App() = default;
     
     App(const App&) = delete;
     App(const App&&) = delete;

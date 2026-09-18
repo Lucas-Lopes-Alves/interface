@@ -1,15 +1,18 @@
-#ifndef __GLFW_WRAPPER__
-#define __GLFW_WRAPPER__
+#ifndef GLFW_WRAPPER__
+#define GLFW_WRAPPER__
 
 #include <GLFW/glfw3.h>
 #include <string>
+
+class WindowConfig;
 
 class Window{
     int width;
     int height;
     std::string title;
-public:
     GLFWwindow* window;
+    friend WindowConfig;
+public:
 
     // Constructor
     Window(int width,int height, const std::string& title);
@@ -62,6 +65,12 @@ public:
 
     ~WindowConfig();
 
+    WindowConfig(const WindowConfig&) = delete;
+    WindowConfig& operator=(const WindowConfig&) = delete;
+    
+    WindowConfig(WindowConfig&&) = delete;
+    WindowConfig& operator=(WindowConfig&&) = delete;
+    
     void pollEvents();
 
     void setContext(Window&);

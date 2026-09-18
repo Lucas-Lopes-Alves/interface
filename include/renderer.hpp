@@ -1,5 +1,5 @@
-#ifndef __RENDERER__
-#define __RENDERER__
+#ifndef RENDERER__
+#define RENDERER__
 
 #include "elements/baseObject.hpp"
 #include <vector>
@@ -20,6 +20,12 @@ public:
     Renderer();
 
     ~Renderer();
+
+    Renderer(const Renderer&) = delete;
+    Renderer& operator=(const Renderer&) = delete;
+    
+    Renderer(Renderer&&) = delete;
+    Renderer& operator=(Renderer&&) = delete;
     
     void render(std::vector<baseObject>& elements);
 

@@ -145,7 +145,12 @@ Vector4& Vector4::operator+=(const Vector4& other){
 }
 
 Vector4 Vector4::operator-(const Vector4& other) const{
-    return Vector4(other.x - this->x, other.y - this->y, this->z - other.z, other.a - this->a);
+    return Vector4(
+        this->x - other.x,
+        this->y - other.y,
+        this->z - other.z, 
+        this->a - other.a
+    );
 }
 
 Vector4& Vector4::operator-=(const Vector4& other){

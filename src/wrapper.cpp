@@ -24,7 +24,9 @@ Window::Window(Window&& other) noexcept
 
 // Destructor
 Window::~Window(){
-    glfwDestroyWindow(this->window);
+    if (this->window){
+        glfwDestroyWindow(this->window);
+    }
 }
 
 Window& Window::operator=(Window&& other)noexcept{

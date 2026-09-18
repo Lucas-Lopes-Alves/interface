@@ -30,5 +30,5 @@ void Renderer::init(){
     quadVbo = OpenGL::createVBO();
     dataVbo = OpenGL::createVBO();
     glBindBuffer(GL_ARRAY_BUFFER, quadVbo);
-    quadVao = OpenGL::createVAO(0,2,2*sizeof(float));
+    quadVao = OpenGL::createVAO(0,2,2*sizeof(float),0);
 }

@@ -1,5 +1,5 @@
-#ifndef __BUTTON__
-#define __BUTTON__
+#ifndef BUTTON__
+#define BUTTON__
 
 #include "elements/baseObject.hpp"
 

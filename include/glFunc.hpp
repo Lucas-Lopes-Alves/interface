@@ -1,5 +1,5 @@
-#ifndef __GLFUNC__
-#define __GLFUNC__
+#ifndef GLFUNC__
+#define GLFUNC__
 
 #include "glad/gl.h"
 #include <cstddef>
@@ -9,7 +9,7 @@ namespace OpenGL{
 
     void uploadVBO(GLuint VBO,const void* data, std::size_t size);
     
-    GLuint createVAO(int location = 0, int quantity = 0, int size = 0, std::size_t start =0);
+    GLuint createVAO(int location, int quantity, int size, std::size_t start);
     
     GLuint createVertexShader(const char*& source, std::size_t count);
     

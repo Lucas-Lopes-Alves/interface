@@ -1,5 +1,5 @@
-#ifndef __VECTORS__
-#define __VECTORS__
+#ifndef MATH_VECTORS__
+#define MATH_VECTORS__
 
 namespace Vec {
 struct Vector2 {

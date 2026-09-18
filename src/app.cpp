@@ -6,7 +6,7 @@
 #include <string>
 
 App::App(int width, int height, std::string title)
-: global(), loader(), mainWindow(width,height,title){
+: global(), mainWindow(width,height,title), loader(){
     global.setContext(mainWindow);
     
     if(!gladLoadGL(glfwGetProcAddress)){
@@ -20,7 +20,7 @@ void App::run(){
     this->setElements();
     while(!mainWindow.windowShouldClose()){
         global.pollEvents();
-        loader.render(childrenElements);
+        render();
         mainWindow.swapBuffers();
     }
 }
