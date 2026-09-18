@@ -20,6 +20,8 @@ public:
     Renderer();
     
     void render(std::vector<baseObject>& elements);
+
+    void init();
 };
 
 #endif

@@ -12,13 +12,15 @@ App::App(int width, int height, std::string title)
     if(!gladLoadGL(glfwGetProcAddress)){
         throw std::runtime_error("Error at loading OpenGL");
     }
+
+    loader.init();
 }
 
 void App::run(){
     while(!mainWindow.windowShouldClose()){
-        mainWindow.swapBuffers();
-        this->setElements();
         global.pollEvents();
+        this->setElements();
+        mainWindow.swapBuffers();
     }
 }
 

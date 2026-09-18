@@ -8,13 +8,27 @@ namespace Vec{
         Vector2(float x, float y): x(x), y(y){}
         Vector2(): x(0), y(0){}
         
-        Vector2& operator+(Vector2& other);
-    
-        Vector2& operator*(float other);
-    
-        Vector2& operator*(Vector2& other);
+        Vector2 operator+(const Vector2& other);
 
-        Vector2& operator=(Vector2& other);
+        Vector2& operator+=(const Vector2& other);
+        
+        Vector2 operator-(const Vector2& other);
+
+        Vector2& operator-=(const Vector2& other);
+        
+        Vector2 operator*(const float other);
+    
+        Vector2 operator*(const Vector2& other);
+        
+        Vector2 operator*=(const Vector2& other);
+
+        Vector2 operator/(const Vector2& other);
+
+        Vector2 operator/(const float& other);
+
+        Vector2 operator/=(const Vector2& other);
+        
+        Vector2 operator=(const Vector2& other);
     };
 
     struct Vector4{
@@ -23,28 +37,56 @@ namespace Vec{
         Vector4(float x ,float y, float z,float a): x(x), y(y), z(z), a(a){}
         Vector4(): x(0), y(0), z(0), a(0) {}
         
-        Vector4& operator+(Vector4& other);
-    
-        Vector4& operator*(float other);
-    
-        Vector4& operator*(Vector4& other);
+        Vector4 operator+(const Vector4& other);
 
-        Vector4& operator=(Vector4& other);
+        Vector4& operator+=(const Vector4& other);
+        
+        Vector4 operator-(const Vector4& other);
+
+        Vector4& operator-=(const Vector4& other);
+        
+        Vector4 operator*(const float other);
+    
+        Vector4 operator*(const Vector4& other);
+        
+        Vector4 operator*=(const Vector4& other);
+
+        Vector4 operator/(const Vector4& other);
+
+        Vector4 operator/(const float& other);
+
+        Vector4 operator/=(const Vector4& other);
+        
+        Vector4 operator=(const Vector4& other);
     };
 
     struct Vector3{
         float x,y,z;
 
-        Vector3(float x ,float y, float z,float a): x(x), y(y), z(z){}
+        Vector3(float x ,float y, float z): x(x), y(y), z(z){}
         Vector3(): x(0), y(0), z(0) {}
         
-        Vector3& operator+(Vector3& other);
-    
-        Vector3& operator*(float other);
-    
-        Vector3& operator*(Vector3& other);
+        Vector3 operator+(const Vector3& other);
 
-        Vector3& operator=(Vector3& other);
+        Vector3& operator+=(const Vector3& other);
+        
+        Vector3 operator-(const Vector3& other);
+
+        Vector3& operator-=(const Vector3& other);
+        
+        Vector3 operator*(const float other);
+    
+        Vector3 operator*(const Vector3& other);
+        
+        Vector3 operator*=(const Vector3& other);
+
+        Vector3 operator/(const Vector3& other);
+
+        Vector3 operator/(const float& other);
+
+        Vector3 operator/=(const Vector3& other);
+        
+        Vector3 operator=(const Vector3& other);
     };
 }
 
