@@ -8,6 +8,7 @@
 #include "wrapper.hpp"
 #include "elements/baseObject.hpp"
 #include <string>
+#include <vector>
 
 
 class App{
@@ -15,11 +16,12 @@ private:
     WindowConfig global;
     Window mainWindow;
     Renderer loader;
+    std::vector<baseObject> childrenElements;
     
     void ViewportResizeCallback(GLFWframebuffersizefun);
 public:
     App(int width,int height, std::string title);
-    ~App();
+    ~App() = default;
     
     App(const App&) = delete;
     App(const App&&) = delete;

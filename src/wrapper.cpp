@@ -1,4 +1,3 @@
-#include "glad/gl.h"
 #include <GLFW/glfw3.h>
 #include <stdexcept>
 #include <string>
@@ -29,12 +28,17 @@ Window::~Window(){
 }
 
 Window& Window::operator=(Window&& other)noexcept{
-    this->height = other.height;
-    this->width = other.width;
-    this->title = other.title;
-    this->window = other.window;
+
+    if (this != &other)
+    {
+        glfwDestroyWindow(window);
+        this->height = other.height;
+        this->width = other.width;
+        this->title = other.title;
+        this->window = other.window;
     
-    other.window = nullptr;
+        other.window = nullptr;
+    }
     return *this;
 }
 void Window::setFramebufferSizeCallback(GLFWframebuffersizefun func){
@@ -62,10 +66,6 @@ WindowConfig::~WindowConfig(){
 
 void WindowConfig::pollEvents(){
     glfwPollEvents();
-}
-
-void WindowConfig::loadOpenGL(){
-    gladLoadGL(glfwGetProcAddress);
 }
 
 void WindowConfig::setContext(Window& win){

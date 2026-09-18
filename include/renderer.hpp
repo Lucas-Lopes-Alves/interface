@@ -3,11 +3,10 @@
 
 #include "elements/baseObject.hpp"
 #include <vector>
-
 class Renderer{
     unsigned int quadVbo;
     unsigned int quadVao;
-    std::vector<baseObject*> instances;
+    unsigned int dataVbo;
     float quadVertices[12] = {
         -0.5f, 0.5f,
         0.5f, 0.5f,
@@ -20,9 +19,7 @@ class Renderer{
 public:
     Renderer();
     
-    void submit(baseObject&);
-
-    void load();
+    void render(std::vector<baseObject>& elements);
 };
 
 #endif

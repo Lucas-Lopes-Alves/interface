@@ -11,7 +11,6 @@ protected:
     Vec::Vector2 size;
     Vec::Vector2 position;
     Vec::Vector4 color;
-    virtual void draw(Renderer&){}
     
 public:
     baseObject() = default;

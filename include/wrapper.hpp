@@ -64,8 +64,6 @@ public:
 
     void pollEvents();
 
-    void loadOpenGL();
-
     void setContext(Window&);
 };
 

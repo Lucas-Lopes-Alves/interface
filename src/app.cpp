@@ -1,16 +1,17 @@
+#include "glad/gl.h"
 #include "app.hpp"
 #include "wrapper.hpp"
 #include <GLFW/glfw3.h>
+#include <stdexcept>
 #include <string>
 
 App::App(int width, int height, std::string title)
 : global(), loader(), mainWindow(width,height,title){
-    global.loadOpenGL();
-}
-
-App::~App(){
-    mainWindow.~Window();
-    global.~WindowConfig();
+    global.setContext(mainWindow);
+    
+    if(!gladLoadGL(glfwGetProcAddress)){
+        throw std::runtime_error("Error at loading OpenGL");
+    }
 }
 
 void App::run(){
@@ -26,9 +27,9 @@ void App::ViewportResizeCallback(GLFWframebuffersizefun func){
 }
 
 void App::addButton(baseObject object){
-    loader.submit(object);
+    childrenElements.push_back(object);
 }
 
 void App::render(){
-    
+    loader.render(childrenElements);
 }

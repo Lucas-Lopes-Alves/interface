@@ -10,7 +10,6 @@ public:
     Button() = default;
 
 protected:
-    void draw(Renderer&) override;
 };
 
 #endif

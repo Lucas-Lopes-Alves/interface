@@ -8,7 +8,7 @@ GLuint OpenGL::createVBO(){
     return VBO;
 }
 
-void uploadVBO(GLuint VBO,const void* data, std::size_t size){
+void OpenGL::uploadVBO(GLuint VBO,const void* data, std::size_t size){
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     
     glBufferData(
@@ -32,7 +32,7 @@ GLuint OpenGL::createVAO(int location, int quantity, int size, std::size_t start
         size,  // tamanho de cada vértice
         (void*)start            // offset
     );
-    glEnableVertexAttribArray(0);
+    glEnableVertexAttribArray(location);
 
     return VAO;
 }

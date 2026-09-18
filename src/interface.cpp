@@ -38,7 +38,6 @@ int main()
     Window janela(800,500, std::string("Ola"));
 
     global.setContext(janela);
-    global.loadOpenGL();
 
     float vertices[]= {
         // triângulo 1
