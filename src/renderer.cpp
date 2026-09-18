@@ -2,13 +2,15 @@
 #include "elements/button.hpp"
 #include "glFunc.hpp"
 
-Renderer::Renderer(){}
+Renderer::Renderer(){
+    quadVbo = OpenGL::createVBO();
+    quadVao = OpenGL::createVAO(0,2,2*sizeof(float));
+}
 
 void Renderer::submit(baseObject& object){
-    instances.push_back(object);
+    instances.push_back(&object);
 }
 
 void Renderer::load(){
-    quadVbo = OpenGL::createVBO();
-    // OpenGL::uploadVBO(quadVbo, Button::vertices, std::size_t size);
+    OpenGL::uploadVBO(quadVbo, quadVertices, sizeof(quadVertices));
 }
