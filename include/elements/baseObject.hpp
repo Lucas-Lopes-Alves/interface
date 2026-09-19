@@ -1,5 +1,5 @@
-#ifndef __BASE_OBJECT__
-#define __BASE_OBJECT__
+#ifndef BASE_OBJECT__
+#define BASE_OBJECT__
 
 #include "vectors.hpp"
 
@@ -14,6 +14,7 @@ protected:
     
 public:
     baseObject() = default;
+    virtual ~baseObject() = default;
 
     baseObject& setPosition(float,float);
 

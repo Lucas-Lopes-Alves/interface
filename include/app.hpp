@@ -9,6 +9,7 @@
 #include "elements/baseObject.hpp"
 #include <string>
 #include <vector>
+#include <memory>
 
 
 class App{
@@ -16,7 +17,7 @@ private:
     WindowConfig global;
     Window mainWindow;
     Renderer loader;
-    std::vector<baseObject> childrenElements;
+    std::vector<std::unique_ptr<baseObject>> childrenElements;
     
     void ViewportResizeCallback(GLFWframebuffersizefun);
 public:
@@ -32,7 +33,8 @@ public:
 
     virtual void setElements() = 0;
 
-    void addButton(baseObject object);
+    template <typename T>
+    void addButton(T& object);
 
     void render();
 };

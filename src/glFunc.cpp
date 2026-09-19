@@ -19,21 +19,9 @@ void OpenGL::uploadVBO(GLuint VBO,const void* data, std::size_t size){
     );
 }
 
-GLuint OpenGL::createVAO(int location, int quantity, int size, std::size_t start){
+GLuint OpenGL::createVAO(){
     GLuint VAO;
     glGenVertexArrays(1, &VAO);
-    glBindVertexArray(VAO);
-
-    glVertexAttribPointer(
-        location,                  // location
-        quantity,                  // quantidade de valores
-        GL_FLOAT,           // tipo
-        GL_FALSE,
-        size,  // tamanho de cada vértice
-        (void*)start            // offset
-    );
-    glEnableVertexAttribArray(location);
-
     return VAO;
 }
 

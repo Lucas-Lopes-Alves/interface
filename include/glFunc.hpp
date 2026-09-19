@@ -9,7 +9,7 @@ namespace OpenGL{
 
     void uploadVBO(GLuint VBO,const void* data, std::size_t size);
     
-    GLuint createVAO(int location, int quantity, int size, std::size_t start);
+    GLuint createVAO();
     
     GLuint createVertexShader(const char*& source, std::size_t count);
     

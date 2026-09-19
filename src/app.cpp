@@ -2,6 +2,7 @@
 #include "app.hpp"
 #include "wrapper.hpp"
 #include <GLFW/glfw3.h>
+#include <memory>
 #include <stdexcept>
 #include <string>
 
@@ -29,8 +30,9 @@ void App::ViewportResizeCallback(GLFWframebuffersizefun func){
     mainWindow.setFramebufferSizeCallback(func);
 }
 
-void App::addButton(baseObject object){
-    childrenElements.push_back(object);
+template<typename T>
+void App::addButton(T& object){
+    childrenElements.push_back(std::make_unique<T>(std::move(object)));
 }
 
 void App::render(){
