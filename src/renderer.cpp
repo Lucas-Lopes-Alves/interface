@@ -20,10 +20,6 @@ Renderer::~Renderer(){
     Vao = 0;
 }
 
-const char* vertexShader = R"(
-    
-)";
-
 void Renderer::render(std::vector<std::unique_ptr<baseObject>>& elements){
     if (!initComplete){
         throw std::runtime_error("Renderer initialization incomplete");
