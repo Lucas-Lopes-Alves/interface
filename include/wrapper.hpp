@@ -56,6 +56,8 @@ public:
 
     void swapBuffers();
 
+    void setUserPointer(void* pointer);
+
 };
 
 class WindowConfig{

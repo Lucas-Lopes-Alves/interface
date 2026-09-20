@@ -2,9 +2,14 @@
 #include "app.hpp"
 #include "wrapper.hpp"
 #include <GLFW/glfw3.h>
-#include <memory>
 #include <stdexcept>
 #include <string>
+
+void App::callback (GLFWwindow* window, int width, int height){
+    glViewport(0,0,width,height);
+    App* app = static_cast<App*>(glfwGetWindowUserPointer(window));
+    app->onResize(width, height);
+}
 
 App::App(int width, int height, std::string title)
 : global(), mainWindow(width,height,title), loader(){
@@ -14,6 +19,9 @@ App::App(int width, int height, std::string title)
         throw std::runtime_error("Error at loading OpenGL");
     }
 
+    mainWindow.setUserPointer(this);
+    
+    mainWindow.setFramebufferSizeCallback(App::callback);
     loader.init();
 }
 
@@ -26,15 +34,11 @@ void App::run(){
     }
 }
 
-void App::ViewportResizeCallback(GLFWframebuffersizefun func){
-    mainWindow.setFramebufferSizeCallback(func);
-}
-
-template<typename T>
-void App::addButton(T& object){
-    childrenElements.push_back(std::make_unique<T>(std::move(object)));
-}
-
 void App::render(){
     loader.render(childrenElements);
+}
+
+void App::onResize(int width, int height)
+{
+    loader.resize(width, height);
 }

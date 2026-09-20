@@ -6,7 +6,7 @@ TARGET = build/bin/libinterface.so
 LDFLAGS = -shared
 LDLIBS = -lglfw
 
-CXXFLAGS = -fPIC -Iinclude
+CXXFLAGS = -std=c++20 -fPIC -Iinclude
 CFLAGS = -fPIC -Iinclude
 
 SRCS_C = $(shell find src -type f -name "*.c")

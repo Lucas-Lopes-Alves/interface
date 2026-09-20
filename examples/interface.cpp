@@ -54,8 +54,10 @@ int main()
     GLuint VBO = OpenGL::createVBO();
     OpenGL::uploadVBO(VBO, &vertices, sizeof(vertices));
     
-    GLuint VAO = OpenGL::createVAO(0,2,2*sizeof(float),0);
+    GLuint VAO = OpenGL::createVAO();
 
+    glVertexAttribPointer(0,2,GL_FLOAT,GL_FALSE,2*sizeof(float),(void*)0);
+    
     GLuint vertexShader = OpenGL::createVertexShader(vertexShaderSource, 1);
 
     GLuint fragmentShader = OpenGL::createFragmentShader(fragmentShaderSource, 1);

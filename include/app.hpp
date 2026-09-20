@@ -1,8 +1,6 @@
 #ifndef APP_CLASS__
 #define APP_CLASS__
 
-// #include "glad/gl.h"
-// #include "glFunc.hpp"
 #include "renderer.hpp"
 #include <GLFW/glfw3.h>
 #include "wrapper.hpp"
@@ -11,6 +9,16 @@
 #include <vector>
 #include <memory>
 
+template <typename T>
+concept Object = requires (T obj) {
+    obj.setPosition(0.0f,0.0f);
+    obj.setSize(0.0f ,0.0f);
+    obj.setColor(0.0f,0.0f,0.0f,0.0f);
+
+    obj.getPosition();
+    obj.getSize();
+    obj.getColor();
+};
 
 class App{
 private:
@@ -19,7 +27,6 @@ private:
     Renderer loader;
     std::vector<std::unique_ptr<baseObject>> childrenElements;
     
-    void ViewportResizeCallback(GLFWframebuffersizefun);
 public:
     App(int width,int height, std::string title);
     virtual ~App() = default;
@@ -33,10 +40,14 @@ public:
 
     virtual void setElements() = 0;
 
-    template <typename T>
-    void addButton(T& object);
+    template<Object T>
+    void addButton(T& object){
+        childrenElements.push_back(std::make_unique<T>(std::move(object)));
+    }
 
+    void onResize(int width, int height);
     void render();
+    static void callback (GLFWwindow* window, int width, int height);
 };
 
 #endif

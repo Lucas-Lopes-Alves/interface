@@ -1,9 +1,10 @@
+#include "glad/gl.h"
+#include "glFunc.hpp"
 #include "renderer.hpp"
 #include "elements/baseObject.hpp"
 #include "elements/button.hpp"
-#include "glFunc.hpp"
-#include "glad/gl.h"
-#include <iostream>
+#include <glm/ext/matrix_float4x4.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 #include <stdexcept>
 #include <vector>
 #include <memory>
@@ -19,6 +20,10 @@ Renderer::~Renderer(){
     Vao = 0;
 }
 
+const char* vertexShader = R"(
+    
+)";
+
 void Renderer::render(std::vector<std::unique_ptr<baseObject>>& elements){
     if (!initComplete){
         throw std::runtime_error("Renderer initialization incomplete");
@@ -26,7 +31,7 @@ void Renderer::render(std::vector<std::unique_ptr<baseObject>>& elements){
     }
 
     if (quadVbo == 0 || Vao== 0 || dataVbo == 0){
-        std::cerr << "Vertices buffer not initialized";
+        throw std::runtime_error("Vertices buffer not initialized");
         return;
     }
 }
@@ -87,4 +92,14 @@ void Renderer::init(){
     
     OpenGL::uploadVBO(quadVbo, quadVertices, sizeof(quadVertices));
     initComplete = true;
+}
+
+void Renderer::resize(float width, float height){
+    projection = glm::ortho(
+        0.0f,
+        width,
+        height,
+        0.0f
+    );
+    glViewport(0,0,width,height);
 }

@@ -73,3 +73,8 @@ void WindowConfig::pollEvents(){
 void WindowConfig::setContext(Window& win){
     glfwMakeContextCurrent(win.window);
 }
+
+void Window::setUserPointer(void* pointer)
+{
+    glfwSetWindowUserPointer(window, pointer);
+}
