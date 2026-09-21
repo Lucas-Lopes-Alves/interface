@@ -34,6 +34,7 @@ class Renderer{
     );
 
     unsigned int projectionLocation;
+    unsigned int shaderProgram;
 public:
     Renderer();
 
@@ -46,7 +47,7 @@ public:
     Renderer& operator=(Renderer&&) = delete;
     
     void render(std::vector<std::unique_ptr<baseObject>>& elements);
-    void resize(float width, float height);
+    void resize(int width, int height);
     void init();
 };
 

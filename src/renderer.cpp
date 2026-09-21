@@ -129,19 +129,45 @@ void Renderer::init(){
     glVertexAttribDivisor(3, 1);
     
     OpenGL::uploadVBO(quadVbo, quadVertices, sizeof(quadVertices));
-    initComplete = true;
 
     vertexShader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
     glCompileShader(vertexShader);
+    checkCompileError(vertexShader);
+
+    shaderProgram = glCreateProgram();
+    glAttachShader(shaderProgram, vertexShader);
+    glLinkProgram(shaderProgram);
+
+    glDeleteShader(vertexShader);
+    
+    projectionLocation = glGetUniformLocation(shaderProgram, "projection");
+    glUseProgram(shaderProgram);
+    glUniformMatrix4fv(
+        projectionLocation,
+        1,
+        GL_FALSE,
+        glm::value_ptr(projection)
+    );
+    initComplete = true;
 }
 
-void Renderer::resize(float width, float height){
+void Renderer::resize(int width, int height){
     projection = glm::ortho(
         0.0f,
-        width,
-        height,
+        static_cast<float>(width),
+        static_cast<float>(height),
         0.0f
     );
     glViewport(0,0,width,height);
+
+    if (shaderProgram){
+        glUseProgram(shaderProgram);
+        glUniformMatrix4fv(
+            projectionLocation,
+            1,
+            GL_FALSE,
+            glm::value_ptr(projection)
+        );
+    }
 }

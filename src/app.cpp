@@ -23,7 +23,7 @@ App::App(int width, int height, std::string title)
     
     mainWindow.setFramebufferSizeCallback(App::callback);
     loader.init();
-    loader.resize(static_cast<float>(width), static_cast<float>(height));
+    loader.resize(width, height);
 }
 
 void App::run(){
