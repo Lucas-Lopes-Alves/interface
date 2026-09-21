@@ -6,7 +6,6 @@
 #include <string>
 
 void App::callback (GLFWwindow* window, int width, int height){
-    glViewport(0,0,width,height);
     App* app = static_cast<App*>(glfwGetWindowUserPointer(window));
     app->onResize(width, height);
 }

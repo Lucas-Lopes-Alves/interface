@@ -14,6 +14,10 @@ class Renderer{
     unsigned int Vao = 0;
 
     unsigned int vertexShader;
+    unsigned int fragmentShader;
+    unsigned int shaderProgram;
+    unsigned int projectionLocation;
+    
     float quadVertices[12] = {
         -0.5f, 0.5f,
         0.5f, 0.5f,
@@ -24,8 +28,6 @@ class Renderer{
         -0.5f, 0.5f
     };
 
-    bool initComplete = false;
-
     glm::mat4 projection = glm::ortho(
         0.0f,
         1920.0f,
@@ -33,8 +35,8 @@ class Renderer{
         0.0f
     );
 
-    unsigned int projectionLocation;
-    unsigned int shaderProgram;
+    bool initComplete = false;
+
 public:
     Renderer();
 

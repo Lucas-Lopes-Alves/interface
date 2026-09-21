@@ -43,6 +43,7 @@ Renderer::~Renderer(){
     dataVbo = 0;
     glDeleteVertexArrays(1, &Vao);
     Vao = 0;
+    glDeleteProgram(shaderProgram);
 }
 
 void Renderer::render(std::vector<std::unique_ptr<baseObject>>& elements){
@@ -71,6 +72,16 @@ const char *const vertexShaderSource = R"(
       
       gl_Position = projection * vec4(aFinal,0.0,1.0); 
       
+    }
+)";
+
+const char*const fragmentShaderSource = R"(
+    in vec4 vertexColor;
+    
+    out vec4 fragColor;
+    
+    void main(){
+        fragColor = vertexColor;
     }
 )";
 
@@ -135,20 +146,22 @@ void Renderer::init(){
     glCompileShader(vertexShader);
     checkCompileError(vertexShader);
 
+    fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+    glShaderSource(fragmentShader,1,&fragmentShaderSource, NULL);
+    glCompileShader(fragmentShader);
+    checkCompileError(fragmentShader);
+
     shaderProgram = glCreateProgram();
     glAttachShader(shaderProgram, vertexShader);
+    glAttachShader(shaderProgram, fragmentShader);
     glLinkProgram(shaderProgram);
 
     glDeleteShader(vertexShader);
+    glDeleteShader(fragmentShader);
     
     projectionLocation = glGetUniformLocation(shaderProgram, "projection");
     glUseProgram(shaderProgram);
-    glUniformMatrix4fv(
-        projectionLocation,
-        1,
-        GL_FALSE,
-        glm::value_ptr(projection)
-    );
+    
     initComplete = true;
 }
 
