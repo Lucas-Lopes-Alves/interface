@@ -12,6 +12,8 @@ class Renderer{
     unsigned int quadVbo = 0;
     unsigned int dataVbo = 0;
     unsigned int Vao = 0;
+
+    unsigned int vertexShader;
     float quadVertices[12] = {
         -0.5f, 0.5f,
         0.5f, 0.5f,

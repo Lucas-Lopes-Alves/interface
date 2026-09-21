@@ -3,11 +3,36 @@
 #include "renderer.hpp"
 #include "elements/baseObject.hpp"
 #include "elements/button.hpp"
+#include <GL/glext.h>
 #include <glm/ext/matrix_float4x4.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include <stdexcept>
 #include <vector>
 #include <memory>
+#include "exceptions/shaderCompileError.hpp"
+
+void checkCompileError(GLuint shaderID){
+    GLint success;
+    
+    //Consulta o status de compilação (GL_COMPILE_STATUS)
+    glGetShaderiv(shaderID, GL_COMPILE_STATUS, &success);
+    
+    //Se o resultado for GL_FALSE, a compilação falhou
+    if (success == GL_FALSE) {
+        GLint logLength;
+        // Descobre o tamanho da mensagem de erro
+        glGetShaderiv(shaderID, GL_INFO_LOG_LENGTH, &logLength);
+        
+        // Cria um buffer para armazenar o texto do erro
+        std::vector<GLchar> errorLog(logLength);
+        glGetShaderInfoLog(shaderID, logLength, &logLength, &errorLog[0]);
+        
+        // Lança a exceção
+        throw shader_compile_error("Erro na compilação do shader:", &errorLog[0]);
+    }
+
+}
 
 Renderer::Renderer(){}
 
@@ -32,11 +57,28 @@ void Renderer::render(std::vector<std::unique_ptr<baseObject>>& elements){
     }
 }
 
+const char *const vertexShaderSource = R"(
+    #version 330 core
+    
+    uniform mat4 projection;
+    
+    layout(location = 0) in vec2 aPos;
+    layout(location = 1) in vec2 aSize;
+    layout(location = 2) in vec2 aPosition;
+    
+    void main(){
+      vec2 aFinal = aPos * aSize + aPosition;
+      
+      gl_Position = projection * vec4(aFinal,0.0,1.0); 
+      
+    }
+)";
+
 void Renderer::init(){
     quadVbo = OpenGL::createVBO();
     dataVbo = OpenGL::createVBO();
     Vao = OpenGL::createVAO();
-    
+
     glBindBuffer(GL_ARRAY_BUFFER, quadVbo);
     glBindVertexArray(Vao);
     
@@ -88,6 +130,10 @@ void Renderer::init(){
     
     OpenGL::uploadVBO(quadVbo, quadVertices, sizeof(quadVertices));
     initComplete = true;
+
+    vertexShader = glCreateShader(GL_VERTEX_SHADER);
+    glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
+    glCompileShader(vertexShader);
 }
 
 void Renderer::resize(float width, float height){
