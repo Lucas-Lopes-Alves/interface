@@ -27,7 +27,7 @@ class Renderer{
     unsigned int vertexShader = 0;
     unsigned int fragmentShader = 0;
     unsigned int shaderProgram = 0;
-    unsigned int projectionLocation = 0;
+    int projectionLocation = 0;
     
     float quadVertices[12] = {
         -0.5f, 0.5f,

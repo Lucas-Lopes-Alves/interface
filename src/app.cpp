@@ -30,7 +30,6 @@ void App::run(){
     while(!mainWindow.windowShouldClose()){
         global.pollEvents();
         loader.load(childrenElements);
-        loader.resize(200, 200);
         render();
         mainWindow.swapBuffers();
     }
