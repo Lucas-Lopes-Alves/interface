@@ -27,9 +27,10 @@ App::App(int width, int height, std::string title)
 
 void App::run(){
     this->setElements();
-    loader.load(childrenElements);
     while(!mainWindow.windowShouldClose()){
         global.pollEvents();
+        loader.load(childrenElements);
+        loader.resize(200, 200);
         render();
         mainWindow.swapBuffers();
     }

@@ -70,9 +70,7 @@ void Renderer::render(std::vector<std::unique_ptr<baseObject>>& elements){
             elements.size()
         );
     
-        glBindVertexArray(0);
         glUseProgram(0);
-
 }
 
 const char *const vertexShaderSource = R"(
@@ -110,9 +108,9 @@ void Renderer::init(){
     quadVbo = OpenGL::createVBO();
     dataVbo = OpenGL::createVBO();
     Vao = OpenGL::createVAO();
-
-    glBindBuffer(GL_ARRAY_BUFFER, quadVbo);
+    glDisable(GL_CULL_FACE);
     glBindVertexArray(Vao);
+    glBindBuffer(GL_ARRAY_BUFFER, quadVbo);
     
     glVertexAttribPointer(
         0,
@@ -161,6 +159,7 @@ void Renderer::init(){
     glVertexAttribDivisor(3, 1);
     
     OpenGL::uploadVBO(quadVbo, quadVertices, sizeof(quadVertices));
+    glBindVertexArray(0);
 
     vertexShader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
@@ -216,10 +215,10 @@ void Renderer::load(std::vector<std::unique_ptr<baseObject>>& elements){
         auto color = element->getColor();
     
         temp.push_back({
-            position.x,
-            position.y,
             size.x,
             size.y,
+            position.x,
+            position.y,
             color.x,
             color.y,
             color.z,
@@ -231,17 +230,8 @@ void Renderer::load(std::vector<std::unique_ptr<baseObject>>& elements){
     glBindBuffer(GL_ARRAY_BUFFER, dataVbo);
     glBufferData(
         GL_ARRAY_BUFFER,
-        elements.size() * sizeof(ElementData),
-        nullptr,
+        temp.size() * sizeof(ElementData),
+        temp.data(),
         GL_DYNAMIC_DRAW
     );
-
-    for (std::size_t i = 0; i < elements.size(); i++){
-        glBufferSubData(
-            GL_ARRAY_BUFFER,
-            i * sizeof(ElementData),
-            sizeof(ElementData),
-            &temp[i]
-        );
-    }
 }
