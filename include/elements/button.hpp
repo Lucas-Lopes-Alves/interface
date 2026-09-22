@@ -8,8 +8,6 @@ class Renderer;
 class Button : public baseObject{
 public:
     Button() = default;
-
-protected:
 };
 
 #endif

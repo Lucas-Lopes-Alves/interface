@@ -7,10 +7,10 @@
 class WindowConfig;
 
 class Window{
-    int width;
-    int height;
+    int width = 0;
+    int height = 0;
     std::string title;
-    GLFWwindow* window;
+    GLFWwindow* window = 0;
     friend WindowConfig;
 public:
 

@@ -8,15 +8,26 @@
 #include <vector>
 #include <memory>
 
+struct ElementData{
+    float sizeX;
+    float sizeY;
+    float positionX;
+    float positionY;
+    float colorX;
+    float colorY;
+    float colorZ;
+    float colorA;
+};
+
 class Renderer{
     unsigned int quadVbo = 0;
     unsigned int dataVbo = 0;
     unsigned int Vao = 0;
 
-    unsigned int vertexShader;
-    unsigned int fragmentShader;
-    unsigned int shaderProgram;
-    unsigned int projectionLocation;
+    unsigned int vertexShader = 0;
+    unsigned int fragmentShader = 0;
+    unsigned int shaderProgram = 0;
+    unsigned int projectionLocation = 0;
     
     float quadVertices[12] = {
         -0.5f, 0.5f,
@@ -51,6 +62,7 @@ public:
     void render(std::vector<std::unique_ptr<baseObject>>& elements);
     void resize(int width, int height);
     void init();
+    void load(std::vector<std::unique_ptr<baseObject>>&);
 };
 
 #endif

@@ -3,16 +3,18 @@
 
 #include <exception>
 #include <iostream>
+#include <string>
 
 class shader_compile_error: public std::exception{
-    const char* message;
-    const char* log;
+    std::string log;
 public:
-    explicit shader_compile_error(const char* msg,const char * errorLog): message(msg), log(errorLog){}
+    explicit shader_compile_error(const char * errorLog): log(errorLog){
+        
+    }
     
     virtual const char* what() const noexcept override{
         std::cerr << log;
-        return message;
+        return log.c_str();
     }
 };
 

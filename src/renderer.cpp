@@ -4,6 +4,7 @@
 #include "elements/baseObject.hpp"
 #include "elements/button.hpp"
 #include <GL/glext.h>
+#include <cstddef>
 #include <glm/ext/matrix_float4x4.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -29,7 +30,7 @@ void checkCompileError(GLuint shaderID){
         glGetShaderInfoLog(shaderID, logLength, &logLength, &errorLog[0]);
         
         // Lança a exceção
-        throw shader_compile_error("Erro na compilação do shader:", &errorLog[0]);
+        throw shader_compile_error(&errorLog[0]);
     }
 
 }
@@ -56,6 +57,22 @@ void Renderer::render(std::vector<std::unique_ptr<baseObject>>& elements){
         throw std::runtime_error("Vertices buffer not initialized");
         return;
     }
+    glClearColor(0.f,0.f,0.f,0.f);
+    glClear(GL_COLOR_BUFFER_BIT);
+    glUseProgram(shaderProgram);
+    
+        glBindVertexArray(Vao);
+    
+        glDrawArraysInstanced(
+            GL_TRIANGLES,
+            0,
+            6,
+            elements.size()
+        );
+    
+        glBindVertexArray(0);
+        glUseProgram(0);
+
 }
 
 const char *const vertexShaderSource = R"(
@@ -185,6 +202,46 @@ void Renderer::resize(int width, int height){
             1,
             GL_FALSE,
             glm::value_ptr(projection)
+        );
+    }
+}
+
+void Renderer::load(std::vector<std::unique_ptr<baseObject>>& elements){
+    std::vector<ElementData> temp;
+    temp.reserve(elements.size());
+    for (auto& element : elements){
+        
+        auto position = element->getPosition();
+        auto size = element->getSize();
+        auto color = element->getColor();
+    
+        temp.push_back({
+            position.x,
+            position.y,
+            size.x,
+            size.y,
+            color.x,
+            color.y,
+            color.z,
+            color.a
+        });
+
+    }
+
+    glBindBuffer(GL_ARRAY_BUFFER, dataVbo);
+    glBufferData(
+        GL_ARRAY_BUFFER,
+        elements.size() * sizeof(ElementData),
+        nullptr,
+        GL_DYNAMIC_DRAW
+    );
+
+    for (std::size_t i = 0; i < elements.size(); i++){
+        glBufferSubData(
+            GL_ARRAY_BUFFER,
+            i * sizeof(ElementData),
+            sizeof(ElementData),
+            &temp[i]
         );
     }
 }

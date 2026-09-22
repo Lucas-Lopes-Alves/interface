@@ -27,6 +27,7 @@ App::App(int width, int height, std::string title)
 
 void App::run(){
     this->setElements();
+    loader.load(childrenElements);
     while(!mainWindow.windowShouldClose()){
         global.pollEvents();
         render();

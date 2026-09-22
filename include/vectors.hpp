@@ -3,7 +3,8 @@
 
 namespace Vec {
 struct Vector2 {
-  float x, y;
+  float x = 0;
+  float y = 0;
 
   Vector2(float x, float y) : x(x), y(y) {}
   Vector2() : x(0), y(0) {}
@@ -32,7 +33,9 @@ struct Vector2 {
 };
 
 struct Vector3 {
-  float x, y, z;
+  float x = 0;
+  float y = 0;
+  float z = 0;
 
   Vector3(float x, float y, float z) : x(x), y(y), z(z) {}
   Vector3() : x(0), y(0), z(0) {}
@@ -61,7 +64,10 @@ struct Vector3 {
 };
 
 struct Vector4 {
-  float x, y, z, a;
+  float x = 0;
+  float y = 0;
+  float z = 0; 
+  float a = 0;
 
   Vector4(float x, float y, float z, float a) : x(x), y(y), z(z), a(a) {}
   Vector4() : x(0), y(0), z(0), a(0) {}
