@@ -3,11 +3,9 @@
 
 #include "vectors.hpp"
 
-class Renderer;
-
 class baseObject{
 protected:
-    friend Renderer;
+    friend class Renderer;
     Vec::Vector2 size;
     Vec::Vector2 position;
     Vec::Vector4 color;
