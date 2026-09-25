@@ -22,10 +22,16 @@ concept Object = requires (T obj) {
 
 class App{
 private:
+    friend void mouseCallback(GLFWwindow* window, int button, int action, int mods);
+    
     WindowConfig global;
     Window mainWindow;
+    float windowX;
+    float windowY;
     Renderer loader;
     std::vector<std::unique_ptr<baseObject>> childrenElements;
+    double mouseX;
+    double mouseY;
     
 public:
     App(int width,int height, std::string title);
@@ -47,7 +53,7 @@ public:
 
     void onResize(int width, int height);
     void render();
-    static void callback (GLFWwindow* window, int width, int height);
+    static void sizeCallback (GLFWwindow* window, int width, int height);
 };
 
 #endif

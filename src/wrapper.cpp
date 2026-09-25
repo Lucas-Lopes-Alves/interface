@@ -55,6 +55,15 @@ void Window::swapBuffers() {
     glfwSwapBuffers(this->window);
 }
 
+void Window::getCursorPos(double& x, double& y){
+    glfwGetCursorPos(window, &x, &y);
+}
+
+void Window::setMouseButtonCallback(GLFWmousebuttonfun func){
+    glfwSetMouseButtonCallback(this->window, func);
+}
+
+
 // GlobalWindow implementations
 WindowConfig::WindowConfig(){
     if (!glfwInit()){

@@ -58,6 +58,10 @@ public:
 
     void setUserPointer(void* pointer);
 
+    void getCursorPos(double& x, double& y);
+
+    void setMouseButtonCallback(void (*func)(GLFWwindow* window, int button, int action, int mods));
+
 };
 
 class WindowConfig{
