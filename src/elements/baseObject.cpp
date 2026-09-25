@@ -1,6 +1,6 @@
 #include "elements/baseObject.hpp"
 
-// Getters
+// Setters
 baseObject& baseObject::setPosition(float x, float y){
     position.x = x;
     position.y = y;
@@ -21,11 +21,11 @@ baseObject& baseObject::setColor(float x,float y,float z,float a){
     return *this;
 }
 
+// Getters
 Vec::Vector2 baseObject::getPosition(){
     return position;
 }
 
-// Setters
 Vec::Vector2 baseObject::getSize(){
     return size;
 }

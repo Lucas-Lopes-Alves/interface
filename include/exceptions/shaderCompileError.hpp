@@ -2,7 +2,6 @@
 #define SHADER_COMPILER_ERROR__
 
 #include <exception>
-#include <iostream>
 #include <string>
 
 class shader_compile_error: public std::exception{
@@ -13,7 +12,6 @@ public:
     }
     
     virtual const char* what() const noexcept override{
-        std::cerr << log;
         return log.c_str();
     }
 };
