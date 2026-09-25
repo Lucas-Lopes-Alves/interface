@@ -26,6 +26,7 @@ public:
 
     Vec::Vector4 getColor();
 
+    virtual void clicked();
 };
 
 #endif

@@ -30,8 +30,6 @@ private:
     float windowY;
     Renderer loader;
     std::vector<std::unique_ptr<baseObject>> childrenElements;
-    double mouseX;
-    double mouseY;
     
 public:
     App(int width,int height, std::string title);

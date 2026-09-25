@@ -33,3 +33,5 @@ Vec::Vector2 baseObject::getSize(){
 Vec::Vector4 baseObject::getColor(){
     return color;
 }
+
+void baseObject::clicked(){}

@@ -16,25 +16,31 @@ void mouseCallback(GLFWwindow* window, int button, int action, int mods){
     double mouseY;
     glfwGetCursorPos(window, &mouseX, &mouseY);
     
-    int width;
-    int height;
-    glfwGetWindowSize(window, &width, &height);
+    // int width;
+    // int height;
+    // glfwGetWindowSize(window, &width, &height);
 
     App* app = static_cast<App*>(glfwGetWindowUserPointer(window));
+    if (!app){ return; }
+    
+//     if (width == 0 || height == 0){
+//         return;
+//     }
+// 
+//     double virtualMouseX = (mouseX / static_cast<double>(width)) * static_cast<double>(app->windowX);
+//     double virtualMouseY = (mouseY / static_cast<double>(height)) * static_cast<double>(app->windowY);
 
     if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS){
         for (auto& data : app->childrenElements){
-            float positionX;
-            float positionY;
-            positionX = data->getPosition().x;
-            positionY = data->getPosition().x;
-            // if (mouseX)
+            auto position = data->getPosition();
+            auto size = data->getSize();
+            if (mouseX > position.x && mouseX < position.x + size.x
+                && mouseY > position.y && mouseY < position.y + size.y)
+            {
+                data->clicked();
+                break;
+            }
         }
-    }
-    
-
-    if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS){
-        std::cout << "oi\n";
     }
 }
 
@@ -61,7 +67,6 @@ void App::run(){
         
         global.pollEvents();
         loader.load(childrenElements);
-        mainWindow.getCursorPos(mouseX, mouseY);
         
         render();
         mainWindow.swapBuffers();
