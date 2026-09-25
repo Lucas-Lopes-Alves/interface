@@ -18,14 +18,29 @@ void mouseCallback(GLFWwindow* window, int button, int action, int mods){
     
     App* app = static_cast<App*>(glfwGetWindowUserPointer(window));
     if (!app){ return; }
+
     
     if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS){
         for (auto& data : app->childrenElements){
             auto position = data->getPosition();
             auto size = data->getSize();
-            if (mouseX > position.x && mouseX < position.x + size.x
-                && mouseY > position.y && mouseY < position.y + size.y)
+            if (mouseX >= position.x && mouseX <= position.x + size.x
+                && mouseY >= position.y && mouseY <= position.y + size.y)
             {
+                std::cout
+                    << "Mouse: "
+                    << mouseX << ", " << mouseY
+                    << "\n";
+                
+                std::cout
+                    << "Element position: "
+                    << position.x << ", " << position.y
+                    << "\n";
+                
+                std::cout
+                    << "Element size: "
+                    << size.x << ", " << size.y
+                    << "\n";
                 data->clicked();
                 break;
             }

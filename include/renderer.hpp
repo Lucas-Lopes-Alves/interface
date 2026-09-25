@@ -30,13 +30,12 @@ class Renderer{
     int projectionLocation = 0;
     
     float quadVertices[12] = {
-        -0.5f, 0.5f,
-        0.5f, 0.5f,
-        0.5f, -0.5f,
-
-        0.5f, -0.5f,
-        -0.5f, -0.5f,
-        -0.5f, 0.5f
+        0.0f, 0.0f,
+        1.0f, 0.0f,
+        1.0f, 1.0f,
+        1.0f, 1.0f,
+        0.0f, 1.0f,
+        0.0f, 0.0f
     };
 
     glm::mat4 projection = glm::ortho(

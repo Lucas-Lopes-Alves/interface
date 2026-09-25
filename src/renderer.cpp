@@ -85,7 +85,7 @@ const char *const vertexShaderSource = R"(
     out vec4 vertexColor;
 
     void main(){
-      vec2 aFinal = vec2(aPos.x + 0.5, -aPos.y + 0.5) * aSize + aPosition;
+      vec2 aFinal = aPos * aSize + aPosition;
       
       gl_Position = projection * vec4(aFinal,0.0,1.0); 
       vertexColor = aColor;
