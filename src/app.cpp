@@ -16,20 +16,9 @@ void mouseCallback(GLFWwindow* window, int button, int action, int mods){
     double mouseY;
     glfwGetCursorPos(window, &mouseX, &mouseY);
     
-    // int width;
-    // int height;
-    // glfwGetWindowSize(window, &width, &height);
-
     App* app = static_cast<App*>(glfwGetWindowUserPointer(window));
     if (!app){ return; }
     
-//     if (width == 0 || height == 0){
-//         return;
-//     }
-// 
-//     double virtualMouseX = (mouseX / static_cast<double>(width)) * static_cast<double>(app->windowX);
-//     double virtualMouseY = (mouseY / static_cast<double>(height)) * static_cast<double>(app->windowY);
-
     if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS){
         for (auto& data : app->childrenElements){
             auto position = data->getPosition();
