@@ -10,25 +10,25 @@ void foo(){
 class myApp : public App{
     using App::App;
     void setElements() override{
-        Button button;
-        button
-            .setColor(256.f,0.f,0.f,1.f)
+        Button firstButton;
+        firstButton
+            .setColor(213.f,190.f,212.f,1.f)
             .setPosition(10.0f,30.0f)
             .setSize(20.0f,20.0f);
         
-        Button button2;
-        button2
-            .setColor(0.0f, 0.0f, 256.0f, 1.0f)
+        Button secondButton;
+        secondButton
+            .setColor(215.0f, 88.0f, 12.0f, 0.5f)
             .setPosition(100.0f,100.0f)
             .setSize(20.0f, 20.0f);
-
-        button.setClickAction(foo);
-        button2.setClickAction([](){
+    
+        firstButton.setClickAction(foo);
+        secondButton.setClickAction([](){
             std::cout << "Hi\n";
         });
         
-        this->addButton(button);
-        this->addButton(button2);
+        this->addButton(firstButton);
+        this->addButton(secondButton);
     }
 };
 
