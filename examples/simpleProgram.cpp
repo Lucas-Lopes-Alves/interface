@@ -19,7 +19,7 @@ class myApp : public App{
         Button button2;
         button2
             .setColor(0.0f, 0.0f, 256.0f, 1.0f)
-            .setPosition(10.0f,50.0f)
+            .setPosition(100.0f,100.0f)
             .setSize(20.0f, 20.0f);
 
         button.setClickAction(foo);

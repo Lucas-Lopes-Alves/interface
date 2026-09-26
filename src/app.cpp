@@ -4,12 +4,6 @@
 #include <GLFW/glfw3.h>
 #include <stdexcept>
 #include <string>
-#include <iostream>
-
-void cursorCallback(GLFWwindow* window, double x, double y)
-{
-    std::cout << "Cursor: " << x << ", " << y << '\n';
-}
 
 void App::sizeCallback(GLFWwindow* window, int width, int height){
     App* app = static_cast<App*>(glfwGetWindowUserPointer(window));
@@ -39,13 +33,6 @@ void mouseCallback(GLFWwindow* window, int button, int action, int mods){
         for (auto& data : app->childrenElements){
             auto position = data->getPosition();
             auto size = data->getSize();
-
-            std::cout
-                    << "Mouse: " << mouseX << ", " << mouseY << '\n'
-                    << "Position: " << position.x << ", " << position.y << '\n'
-                    << "Size: " << size.x << ", " << size.y << '\n';
-            
-
             
             if (virtualMouseX >= position.x && virtualMouseX <= position.x + size.x
                 && virtualMouseY >= position.y && virtualMouseY <= position.y + size.y)
@@ -69,7 +56,6 @@ App::App(int width, int height, std::string title)
     
     mainWindow.setFramebufferSizeCallback(App::sizeCallback);
     mainWindow.setMouseButtonCallback(mouseCallback);
-    mainWindow.setCursorPosCallback(cursorCallback);
     loader.init();
     loader.resize(width, height);
 }
