@@ -62,6 +62,7 @@ public:
 
     void setMouseButtonCallback(void (*func)(GLFWwindow* window, int button, int action, int mods));
 
+    void setCursorPosCallback(void (*func)(GLFWwindow* window, double x, double y));
 };
 
 class WindowConfig{

@@ -63,6 +63,9 @@ void Window::setMouseButtonCallback(GLFWmousebuttonfun func){
     glfwSetMouseButtonCallback(this->window, func);
 }
 
+void Window::setCursorPosCallback(void (*func)(GLFWwindow* window, double x, double y)){
+    glfwSetCursorPosCallback(window, func);
+}
 
 // GlobalWindow implementations
 WindowConfig::WindowConfig(){

@@ -3,7 +3,7 @@
 #include <iostream>
 
 void foo(){
-    std::cout << "ola\n";
+    std::cout << "hello\n";
 }
 
 // Creates the class that derives from app class
@@ -24,7 +24,7 @@ class myApp : public App{
 
         button.setClickAction(foo);
         button2.setClickAction([](){
-            std::cout << "meu ovo\n";
+            std::cout << "Hi\n";
         });
         
         this->addButton(button);
