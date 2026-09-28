@@ -9,6 +9,10 @@
 #include <vector>
 #include <memory>
 
+enum class backgroundColors{
+    
+};
+
 template <typename T>
 concept Object = requires (T obj) {
     obj.setPosition(0.0f,0.0f);
@@ -42,8 +46,6 @@ public:
 
     void run();
 
-    virtual void setElements() = 0;
-
     template<Object T>
     void addButton(T& object){
         childrenElements.push_back(std::make_unique<T>(std::move(object)));
@@ -52,6 +54,7 @@ public:
     void onResize(int width, int height);
     void render();
     static void sizeCallback (GLFWwindow* window, int width, int height);
+    void setBackgroundColor();
 };
 
 #endif
