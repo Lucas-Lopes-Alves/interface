@@ -4,8 +4,6 @@
 #include "elements/baseObject.hpp"
 #include <vector>
 
-class Renderer;
-
 class Button : public baseObject{
     void clicked() override;
     std::vector<void(*)()> callbacks;
