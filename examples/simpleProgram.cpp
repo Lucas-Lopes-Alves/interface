@@ -21,9 +21,12 @@ int main(){
         .setPosition(100.0f,100.0f)
         .setSize(20.0f, 20.0f);
 
-    firstButton.setClickAction(foo);
-    secondButton.setClickAction([](){
-        std::cout << "Hi\n";
+    firstButton.connect(foo);
+    secondButton.connect([](){
+        std::cout << "Hi ";
+    });
+    secondButton.connect([](){
+        std::cout << "my friend\n";
     });
     
     main.addButton(firstButton);

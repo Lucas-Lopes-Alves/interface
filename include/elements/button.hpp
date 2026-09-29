@@ -2,15 +2,16 @@
 #define BUTTON__
 
 #include "elements/baseObject.hpp"
+#include <vector>
 
 class Renderer;
 
 class Button : public baseObject{
     void clicked() override;
-    void (*clickCallback)() = nullptr;
+    std::vector<void(*)()> callbacks;
 public:
     Button() = default;
-    void setClickAction(void (*func)());
+    void connect(void (*func)());
 };
 
 #endif

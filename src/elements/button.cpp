@@ -1,11 +1,11 @@
 #include "elements/button.hpp"
 
 void Button::clicked(){
-    if (clickCallback){
-        clickCallback();
+    for (auto& funcs : callbacks){
+        funcs();
     }
 }
 
-void Button::setClickAction(void (*func)()){
-    clickCallback = func;
+void Button::connect(void (*func)()){
+    callbacks.push_back(func);
 }
