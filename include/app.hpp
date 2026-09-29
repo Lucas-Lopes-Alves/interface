@@ -30,9 +30,9 @@ private:
     
     WindowConfig global;
     Window mainWindow;
+    Renderer loader;
     float windowX;
     float windowY;
-    Renderer loader;
     std::vector<std::unique_ptr<baseObject>> childrenElements;
     
 public:
