@@ -8,7 +8,7 @@ class Button : public baseObject{
     void clicked() override;
     std::vector<void(*)()> callbacks;
 public:
-    Button() = default;
+    Button();
     void connect(void (*func)());
 };
 
