@@ -1,5 +1,7 @@
-CXX = g++
-CC = gcc
+CXX ?= g++
+CC ?= gcc
+
+MODE ?= debug
 
 TARGET = build/bin/libinterface.so
 
@@ -8,6 +10,14 @@ LDLIBS = -lglfw
 
 CXXFLAGS = -std=c++20 -fPIC -Iinclude
 CFLAGS = -fPIC -Iinclude
+
+ifeq ($(MODE),debug)
+	CXXFLAGS += -g -O0
+else ifeq ($(MODE),release)
+	CXXFLAGS += -O3
+else ifeq ($(MODE),relwithdebuginfo)
+	CXXFLAGS += -O2 -g
+endif
 
 SRCS_C = $(shell find src -type f -name "*.c")
 SRCS_CPP = $(shell find src -type f -name "*.cpp")
