@@ -3,7 +3,7 @@
 
 #include "vectors.hpp"
 
-class baseObject{
+class BaseObject{
 protected:
     friend class Renderer;
     Vec::Vector2 size;
@@ -11,14 +11,14 @@ protected:
     Vec::Vector4 color;
     
 public:
-    baseObject() = default;
-    virtual ~baseObject() = default;
+    BaseObject() = default;
+    virtual ~BaseObject() = default;
 
-    baseObject& setPosition(float,float);
+    BaseObject& setPosition(float,float);
 
-    baseObject& setSize(float,float);
+    BaseObject& setSize(float,float);
 
-    baseObject& setColor(float,float,float,float);
+    BaseObject& setColor(float,float,float,float);
 
     Vec::Vector2 getPosition();
     

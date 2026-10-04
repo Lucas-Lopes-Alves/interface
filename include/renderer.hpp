@@ -58,10 +58,10 @@ public:
     Renderer(Renderer&&) = delete;
     Renderer& operator=(Renderer&&) = delete;
     
-    void render(std::vector<std::unique_ptr<baseObject>>& elements);
+    void render(std::vector<std::unique_ptr<BaseObject>>& elements);
     void resize(int width, int height);
     void init();
-    void load(std::vector<std::unique_ptr<baseObject>>&);
+    void load(std::vector<std::unique_ptr<BaseObject>>&);
 };
 
 #endif

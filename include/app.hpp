@@ -33,7 +33,7 @@ private:
     Renderer loader;
     float windowX;
     float windowY;
-    std::vector<std::unique_ptr<baseObject>> childrenElements;
+    std::vector<std::unique_ptr<BaseObject>> childrenElements;
     
 public:
     App(int width,int height, std::string title);

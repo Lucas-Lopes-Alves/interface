@@ -1,19 +1,19 @@
 #include "elements/baseObject.hpp"
 
 // Setters
-baseObject& baseObject::setPosition(float x, float y){
+BaseObject& BaseObject::setPosition(float x, float y){
     position.x = x;
     position.y = y;
     return *this;
 }
 
-baseObject& baseObject::setSize(float x, float y){
+BaseObject& BaseObject::setSize(float x, float y){
     size.x = x;
     size.y = y;
     return *this;
 }
 
-baseObject& baseObject::setColor(float x,float y,float z,float a){
+BaseObject& BaseObject::setColor(float x,float y,float z,float a){
     color.x = x;
     color.y = y;
     color.z = z;
@@ -22,16 +22,16 @@ baseObject& baseObject::setColor(float x,float y,float z,float a){
 }
 
 // Getters
-Vec::Vector2 baseObject::getPosition(){
+Vec::Vector2 BaseObject::getPosition(){
     return position;
 }
 
-Vec::Vector2 baseObject::getSize(){
+Vec::Vector2 BaseObject::getSize(){
     return size;
 }
 
-Vec::Vector4 baseObject::getColor(){
+Vec::Vector4 BaseObject::getColor(){
     return color;
 }
 
-void baseObject::clicked(){}
+void BaseObject::clicked(){}

@@ -46,7 +46,7 @@ Renderer::~Renderer(){
     glDeleteProgram(shaderProgram);
 }
 
-void Renderer::render(std::vector<std::unique_ptr<baseObject>>& elements){
+void Renderer::render(std::vector<std::unique_ptr<BaseObject>>& elements){
     if (!initComplete){
         throw std::runtime_error("Renderer initialization incomplete");
         return;
@@ -204,7 +204,7 @@ void Renderer::resize(int width, int height){
     }
 }
 
-void Renderer::load(std::vector<std::unique_ptr<baseObject>>& elements){
+void Renderer::load(std::vector<std::unique_ptr<BaseObject>>& elements){
     std::vector<ElementData> temp;
     temp.reserve(elements.size());
     for (auto& element : elements){

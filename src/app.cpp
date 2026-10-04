@@ -25,6 +25,7 @@ void mouseCallback(GLFWwindow* window, int button, int action, int mods){
 
     double virtualMouseX = 
         (mouseX / static_cast<double>(width)) * static_cast<double>(app->windowX); 
+
     
     double virtualMouseY = 
         (mouseY / static_cast<double>(height)) * static_cast<double>(app->windowY);
