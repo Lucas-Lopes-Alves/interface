@@ -9,27 +9,14 @@ void foo(){
 int main(){
     App main(200,200,"Hello World");
     
-    Button firstButton;
-    firstButton
+    Button button;
+    button
         .setColor(213.f,190.f,212.f,1.f)
         .setPosition(10.0f,30.0f)
-        .setSize(20.0f,20.0f);
-    
-    Button secondButton;
-    secondButton
-        .setColor(215.0f, 88.0f, 12.0f, 0.5f)
-        .setPosition(100.0f,100.0f)
-        .setSize(20.0f, 20.0f);
+        .setSize(20.0f,20.0f);    
 
-    firstButton.connect(foo);
-    secondButton.connect([](){
-        std::cout << "Hi ";
-    });
-    secondButton.connect([](){
-        std::cout << "my friend\n";
-    });
+    button.connect(foo);
     
-    main.addButton(firstButton);
-    main.addButton(secondButton);
+    main.addButton(button);
     main.run();
 }
