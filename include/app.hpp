@@ -35,6 +35,9 @@ private:
     float windowY;
     std::vector<std::unique_ptr<BaseObject>> childrenElements;
     
+    void onResize(int width, int height);
+    void render();
+    static void sizeCallback (GLFWwindow* window, int width, int height);
 public:
     App(int width,int height, std::string title);
     virtual ~App() = default;
@@ -51,9 +54,6 @@ public:
         childrenElements.push_back(std::make_unique<T>(std::move(object)));
     }
 
-    void onResize(int width, int height);
-    void render();
-    static void sizeCallback (GLFWwindow* window, int width, int height);
     void setBackgroundColor();
 };
 

@@ -73,7 +73,7 @@ void App::run(){
     }
 }
 
-void App::render(){
+inline void App::render(){
     loader.render(childrenElements);
 }
 
