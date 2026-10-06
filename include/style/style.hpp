@@ -5,7 +5,7 @@
 
 struct Style{
     Vec::Vector4 color;
-    Vec::Vector4 bordersColors;
+    Vec::Vector4 bordersColor;
 };
 
 #endif
