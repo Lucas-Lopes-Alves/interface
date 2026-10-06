@@ -6,6 +6,8 @@
 struct Style{
     Vec::Vector4 color;
     Vec::Vector4 borderColor;
+    int borderSize;
+    bool visible = true;
 };
 
 #endif
