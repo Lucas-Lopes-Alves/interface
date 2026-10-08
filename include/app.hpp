@@ -17,11 +17,12 @@ template <typename T>
 concept Object = requires (T obj) {
     obj.setPosition(0.0f,0.0f);
     obj.setSize(0.0f ,0.0f);
-    obj.setColor(0.0f,0.0f,0.0f,0.0f);
 
     obj.getPosition();
     obj.getSize();
-    obj.getColor();
+
+    obj.getStyle();
+    
 };
 
 class App{
