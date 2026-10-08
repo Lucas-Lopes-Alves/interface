@@ -3,7 +3,6 @@
 
 #include "elements/baseObject.hpp"
 #include "style/style.hpp"
-#include "vectors.hpp"
 #include <vector>
 
 class Button : public BaseObject{
@@ -15,7 +14,8 @@ public:
     void connect(void (*func)());
     
     Button& setColor(float,float,float,float);
-    Vec::Vector4 getColor();
+
+    Style getStyle() const override;
 };
 
 #endif

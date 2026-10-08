@@ -22,6 +22,6 @@ Button& Button::setColor(float x,float y,float z,float w){
     return *this;
 }
 
-Vec::Vector4 Button::getColor(){
-    return style.color;
+Style Button::getStyle() const{
+    return style;
 }
