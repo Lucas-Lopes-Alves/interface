@@ -1,4 +1,5 @@
 #include "elements/baseObject.hpp"
+#include "vectors.hpp"
 
 // Setters
 BaseObject& BaseObject::setPosition(float x, float y){
@@ -21,5 +22,3 @@ Vec::Vector2 BaseObject::getPosition(){
 Vec::Vector2 BaseObject::getSize(){
     return size;
 }
-
-void BaseObject::clicked(){}

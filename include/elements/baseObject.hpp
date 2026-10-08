@@ -1,6 +1,7 @@
 #ifndef BASE_OBJECT__
 #define BASE_OBJECT__
 
+#include "style/style.hpp"
 #include "vectors.hpp"
 
 class BaseObject{
@@ -21,8 +22,9 @@ public:
     
     Vec::Vector2 getSize();
 
-
-    virtual void clicked();
+    virtual Style getStyle() const = 0;
+    
+    virtual void clicked() = 0;
 };
 
 #endif
