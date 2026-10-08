@@ -2,13 +2,14 @@
 #define BASE_OBJECT__
 
 #include "vectors.hpp"
+#include "style/style.hpp"
 
 class BaseObject{
 protected:
     friend class Renderer;
     Vec::Vector2 size;
     Vec::Vector2 position;
-    Vec::Vector4 color;
+    Style style;
     
 public:
     BaseObject() = default;
