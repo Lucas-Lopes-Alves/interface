@@ -3,7 +3,7 @@
 
 #include "vectors.hpp"
 
-class Style{
+struct Style{
     Vec::Vector4 color = {0,0,0,0};
     Vec::Vector4 borderColor = {0,0,0,0};
     float borderSize = 0;
