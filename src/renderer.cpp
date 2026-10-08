@@ -169,7 +169,7 @@ void Renderer::init(){
     glVertexAttribPointer(
         5,
         1,
-        GL_INT,
+        GL_FLOAT,
         GL_FALSE,
         STRIDE_SIZE,
         (void*)(12 * sizeof(float))
@@ -236,17 +236,22 @@ void Renderer::load(std::vector<std::unique_ptr<BaseObject>>& elements){
         
         auto position = element->getPosition();
         auto size = element->getSize();
-        auto color = element->getColor();
+        auto style = element->getStyle();
     
         temp.push_back({
             size.x,
             size.y,
             position.x,
             position.y,
-            color.x,
-            color.y,
-            color.z,
-            color.a
+            style.color.x,
+            style.color.y,
+            style.color.z,
+            style.color.a,
+            style.borderColor.x,
+            style.borderColor.y,
+            style.borderColor.z,
+            style.borderColor.a,
+            style.borderSize
         });
 
     }
