@@ -12,6 +12,9 @@
 #include <memory>
 #include "exceptions/shaderCompileError.hpp"
 
+// define the offset for the dataVbo
+#define STRIDE_SIZE 12 * sizeof(float) + sizeof(int) + sizeof(bool)
+
 void checkCompileError(GLuint shaderID){
     GLint success;
     
@@ -128,7 +131,7 @@ void Renderer::init(){
         2,
         GL_FLOAT,
         GL_FALSE,
-        8 * sizeof(float),
+        STRIDE_SIZE,
         (void*)0
     );
     glEnableVertexAttribArray(1);
@@ -138,7 +141,7 @@ void Renderer::init(){
         2,
         GL_FLOAT,
         GL_FALSE,
-        8 * sizeof(float),
+        STRIDE_SIZE,
         (void*)(2 * sizeof(float))
     );
     glEnableVertexAttribArray(2);
@@ -148,14 +151,36 @@ void Renderer::init(){
         4,
         GL_FLOAT,
         GL_FALSE,
-        8 * sizeof(float),
+        STRIDE_SIZE,
         (void*)(4 * sizeof(float))
     );
     glEnableVertexAttribArray(3);
 
+    glVertexAttribPointer(
+        4,
+        4,
+        GL_FLOAT,
+        GL_FALSE,
+        STRIDE_SIZE,
+        (void*)(8 * sizeof(float))
+    );
+    glEnableVertexAttribArray(4);
+
+    glVertexAttribPointer(
+        5,
+        1,
+        GL_INT,
+        GL_FALSE,
+        STRIDE_SIZE,
+        (void*)(12 * sizeof(float))
+    );
+    glEnableVertexAttribArray(5);
+    
     glVertexAttribDivisor(1, 1);
     glVertexAttribDivisor(2, 1);
     glVertexAttribDivisor(3, 1);
+    glVertexAttribDivisor(4, 1);
+    glVertexAttribDivisor(5, 1);
     
     OpenGL::uploadVBO(quadVbo, quadVertices, sizeof(quadVertices));
     glBindVertexArray(0);
