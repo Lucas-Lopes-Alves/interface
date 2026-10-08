@@ -3,10 +3,10 @@
 
 #include "vectors.hpp"
 
-struct Style{
-    Vec::Vector4 color;
-    Vec::Vector4 borderColor;
-    int borderSize;
+class Style{
+    Vec::Vector4 color = {0,0,0,0};
+    Vec::Vector4 borderColor = {0,0,0,0};
+    float borderSize = 0;
     bool visible = true;
 };
 
