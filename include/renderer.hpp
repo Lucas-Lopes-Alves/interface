@@ -17,6 +17,11 @@ struct ElementData{
     float colorY;
     float colorZ;
     float colorA;
+    float borderColorX;
+    float borderColorY;
+    float borderColorZ;
+    float borderColorA;
+    float borderSize;
 };
 
 class Renderer{
