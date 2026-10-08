@@ -15,6 +15,7 @@ ifeq ($(MODE),debug)
 	CXXFLAGS += -g -O0
 else ifeq ($(MODE),release)
 	CXXFLAGS += -O3
+	CFLAGS += -O3
 else ifeq ($(MODE),relwithdebuginfo)
 	CXXFLAGS += -O2 -g
 endif
