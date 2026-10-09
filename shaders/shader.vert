@@ -10,6 +10,10 @@ layout(location = 4) in vec4 aBorderColor;
 layout(location = 5) in float aBorderSize;
 
 out vec4 vertexColor;
+out vec4 borderColor;
+out float borderSize;
+out vec2 localPos;
+out vec2 elementSize;
 
 void main(){
     
@@ -17,4 +21,9 @@ void main(){
   
   gl_Position = projection * vec4(aFinal,0.0,1.0); 
   vertexColor = aColor;
+
+  borderColor = aBorderColor;
+  borderSize = aBorderSize;
+  localPos = aPos;
+  elementSize = aSize;
 }
