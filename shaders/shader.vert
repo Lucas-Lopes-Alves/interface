@@ -6,6 +6,9 @@ layout(location = 0) in vec2 aPos;
 layout(location = 1) in vec2 aSize;
 layout(location = 2) in vec2 aPosition;
 layout(location = 3) in vec4 aColor;
+layout(location = 4) in vec4 aBorderColor;
+layout(location = 5) in float aBorderSize;
+
 out vec4 vertexColor;
 
 void main(){
