@@ -14,8 +14,8 @@ CFLAGS = -fPIC -Iinclude
 ifeq ($(MODE),debug)
 	CXXFLAGS += -g -O0
 else ifeq ($(MODE),release)
-	CXXFLAGS += -O3
-	CFLAGS += -O3
+	CXXFLAGS += -O2
+	CFLAGS += -O2
 else ifeq ($(MODE),relwithdebuginfo)
 	CXXFLAGS += -O2 -g
 endif
