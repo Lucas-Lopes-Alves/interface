@@ -22,6 +22,19 @@ Button& Button::setColor(float x,float y,float z,float w){
     return *this;
 }
 
+Button& Button::setBorderSize(float size){
+    style.borderSize = size;
+    return *this;
+}
+
+Button& Button::setBorderColor(float x,float y,float z,float a){
+    style.borderColor.x = x;
+    style.borderColor.y = y;
+    style.borderColor.z = z;
+    style.borderColor.a = a;
+    return *this;
+}
+
 Style Button::getStyle() const{
     return style;
 }
