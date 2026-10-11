@@ -33,19 +33,17 @@ SHADER_SOURCES := shaders/shader.vert shaders/shader.frag
 SHADER_SCRIPT := scripts/embed_shaders.py
 
 all: $(TARGET)
-	
+
 $(TARGET): $(OBJS)
 	mkdir -p $(dir $@)
 	$(CXX) $^ $(LDFLAGS) -o $@ $(LDLIBS)
 
-build/obj/renderer.o: src/renderer.cpp $(SHADER_HEADER)
-	mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-	
 build/obj/%.o: src/%.cpp
 	mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
-	
+
+build/obj/renderer.o: src/renderer.cpp $(SHADER_HEADER)
+
 build/obj/%.o: src/%.c
 	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -53,6 +51,6 @@ build/obj/%.o: src/%.c
 $(SHADER_HEADER): $(SHADER_SOURCES) $(SHADER_SCRIPT)
 	mkdir -p $(dir $@)
 	$(PYTHON) $(SHADER_SCRIPT) $(SHADER_SOURCES) $@
-	
+
 clean:
 	rm -rf build/*
