@@ -26,8 +26,14 @@ SRCS_CPP = $(shell find src -type f -name "*.cpp")
 OBJS = $(patsubst src/%.c, build/obj/%.o, $(SRCS_C))
 OBJS += $(patsubst src/%.cpp, build/obj/%.o, $(SRCS_CPP))
 
-all: $(TARGET)
+PYTHON := python3
 
+SHADER_HEADER := build/bin/generated/shaders.hpp
+SHADER_SOURCES := shaders/shader.vert shaders/shader.frag
+SHADER_SCRIPT := scripts/embed_shaders.py
+
+all: $(SHADER_HEADER) $(TARGET)
+	
 $(TARGET): $(OBJS)
 	mkdir -p $(dir $@)
 	$(CXX) $^ $(LDFLAGS) -o $@ $(LDLIBS)
@@ -40,5 +46,9 @@ build/obj/%.o: src/%.c
 	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(SHADER_HEADER): $(SHADER_SOURCES) $(SHADER_SCRIPT)
+	mkdir -p $(dir $@)
+	$(PYTHON) $(SHADER_SCRIPT) $(SHADER_SOURCES) $@
+	
 clean:
 	rm -rf build/*
