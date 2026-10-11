@@ -32,12 +32,16 @@ SHADER_HEADER := build/bin/generated/shaders.hpp
 SHADER_SOURCES := shaders/shader.vert shaders/shader.frag
 SHADER_SCRIPT := scripts/embed_shaders.py
 
-all: $(SHADER_HEADER) $(TARGET)
+all: $(TARGET)
 	
 $(TARGET): $(OBJS)
 	mkdir -p $(dir $@)
 	$(CXX) $^ $(LDFLAGS) -o $@ $(LDLIBS)
 
+build/obj/renderer.o: src/renderer.cpp $(SHADER_HEADER)
+	mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+	
 build/obj/%.o: src/%.cpp
 	mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
