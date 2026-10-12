@@ -7,7 +7,7 @@ output_path = Path(output)
 header: list[str] = []
 
 header.append("#pragma once\n")
-header.append(r"namespace shaders{")
+header.append("namespace shaders{\n")
 
 
 for shader in shader_sources:
@@ -16,10 +16,10 @@ for shader in shader_sources:
     content = ""
     with open(shader,"r") as file:
         content = file.read()
-    header.append(f"const char*const {variable_name} = R\"SHADER({content})SHADER\";\n")
+    header.append(f"""const char*const {variable_name} = R\"SHADER(\n{content})SHADER\";\n""")
 
 header.append("}")
-final = "\n ".join(header)
+final = "\n".join(header)
 
 with open(output,"w") as file:
     file.write(final)
