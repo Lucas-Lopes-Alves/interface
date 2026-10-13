@@ -5,7 +5,7 @@
 #include "style/style.hpp"
 #include <vector>
 
-class Button : public BaseObject{
+class Button : public Element<Button>{
     void clicked() override;
     std::vector<void(*)()> callbacks;
     Style style;
@@ -18,10 +18,6 @@ public:
     Button& setBorderSize(float);
 
     Button& setBorderColor(float,float,float,float);
-
-    Button& setPosition(float,float);
-
-    Button& setSize(float,float);
     
     Style getStyle() const override;
 };
