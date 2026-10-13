@@ -27,4 +27,18 @@ public:
     virtual void clicked() = 0;
 };
 
+template <typename Class_name>
+class Element : public BaseObject{
+public:
+    Class_name& setPosition(float x,float y){
+        BaseObject::setPosition(x, y);
+        return static_cast<Class_name&>(*this);
+    }
+    
+    Class_name& setSize(float x,float y){
+        BaseObject::setSize(x, y);
+        return static_cast<Class_name&>(*this);
+    }
+};
+
 #endif
