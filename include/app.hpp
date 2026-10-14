@@ -51,7 +51,7 @@ public:
     void run();
 
     template<Object T>
-    void addButton(T& object){
+    void addButton(T* object){
         childrenElements.push_back(std::make_unique<T>(std::move(object)));
     }
 

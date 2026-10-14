@@ -13,13 +13,13 @@ public:
     Button();
     void connect(void (*func)());
     
-    Button& setColor(float,float,float,float);
+    Button* setColor(float,float,float,float);
 
-    Button& setBorderSize(float);
+    Button* setBorderSize(float);
 
-    Button& setBorderColor(float,float,float,float);
+    Button* setBorderColor(float,float,float,float);
 
-    Button& setVisibility(bool);
+    Button* setVisibility(bool);
 
     bool getVisibility();
     
