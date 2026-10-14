@@ -19,20 +19,20 @@
 void checkCompileError(GLuint shaderID){
     GLint success;
     
-    //Consulta o status de compilação (GL_COMPILE_STATUS)
+    //Get the compilation status (GL_COMPILE_STATUS)
     glGetShaderiv(shaderID, GL_COMPILE_STATUS, &success);
     
-    //Se o resultado for GL_FALSE, a compilação falhou
+    //if result is GL_FALSE, the compilation failed
     if (success == GL_FALSE) {
         GLint logLength;
-        // Descobre o tamanho da mensagem de erro
+        // Discover the error message length
         glGetShaderiv(shaderID, GL_INFO_LOG_LENGTH, &logLength);
         
-        // Cria um buffer para armazenar o texto do erro
+        // Create a buffer to store the error message
         std::vector<GLchar> errorLog(logLength);
         glGetShaderInfoLog(shaderID, logLength, &logLength, &errorLog[0]);
         
-        // Lança a exceção
+        // throw the execption
         throw shader_compile_error(&errorLog[0]);
     }
 
