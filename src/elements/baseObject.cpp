@@ -2,16 +2,16 @@
 #include "vectors.hpp"
 
 // Setters
-BaseObject* BaseObject::setPosition(float x, float y){
+BaseObject& BaseObject::setPosition(float x, float y){
     position.x = x;
     position.y = y;
-    return this;
+    return *this;
 }
 
-BaseObject* BaseObject::setSize(float x, float y){
+BaseObject& BaseObject::setSize(float x, float y){
     size.x = x;
     size.y = y;
-    return this;
+    return *this;
 }
 
 // Getters

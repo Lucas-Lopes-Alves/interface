@@ -17,27 +17,27 @@ void Button::connect(void (*func)()){
     callbacks.push_back(func);
 }
 
-Button* Button::setColor(float x,float y,float z,float w){
+Button& Button::setColor(float x,float y,float z,float w){
     style.color = {x,y,z,w};
-    return this;
+    return *this;
 }
 
-Button* Button::setBorderSize(float size){
+Button& Button::setBorderSize(float size){
     style.borderSize = size;
-    return this;
+    return *this;
 }
 
-Button* Button::setBorderColor(float x,float y,float z,float a){
+Button& Button::setBorderColor(float x,float y,float z,float a){
     style.borderColor.x = x;
     style.borderColor.y = y;
     style.borderColor.z = z;
     style.borderColor.a = a;
-    return this;
+    return *this;
 }
 
-Button* Button::setVisibility(bool visibility){
+Button& Button::setVisibility(bool visibility){
     style.visible = visibility;
-    return this;
+    return *this;
 }
 
 bool Button::getVisibility(){
