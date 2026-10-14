@@ -18,6 +18,10 @@ public:
     Button& setBorderSize(float);
 
     Button& setBorderColor(float,float,float,float);
+
+    Button& setVisibility(bool);
+
+    bool getVisibility();
     
     Style getStyle() const override;
 };

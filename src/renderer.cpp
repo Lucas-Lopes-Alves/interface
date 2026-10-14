@@ -204,9 +204,13 @@ void Renderer::load(std::vector<std::unique_ptr<BaseObject>>& elements){
     temp.reserve(elements.size());
     for (auto& element : elements){
         
+        auto style = element->getStyle();
+        if (!style.visible){
+            continue;
+        }
+        
         auto position = element->getPosition();
         auto size = element->getSize();
-        auto style = element->getStyle();
     
         temp.push_back({
             size.x,

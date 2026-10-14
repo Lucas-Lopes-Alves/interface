@@ -35,6 +35,15 @@ Button& Button::setBorderColor(float x,float y,float z,float a){
     return *this;
 }
 
+Button& Button::setVisibility(bool visibility){
+    style.visible = visibility;
+    return *this;
+}
+
+bool Button::getVisibility(){
+    return style.visible;
+}
+
 Style Button::getStyle() const{
     return style;
 }
