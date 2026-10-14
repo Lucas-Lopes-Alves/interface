@@ -3,6 +3,7 @@
 
 #include "elements/baseObject.hpp"
 #include <GLFW/glfw3.h>
+#include <cstddef>
 #include <glm/ext/matrix_clip_space.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <vector>
@@ -33,6 +34,8 @@ class Renderer{
     unsigned int fragmentShader = 0;
     unsigned int shaderProgram = 0;
     int projectionLocation = 0;
+
+    std::size_t elementsCount = 0;
     
     float quadVertices[12] = {
         0.0f, 0.0f,

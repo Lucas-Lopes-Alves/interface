@@ -14,7 +14,7 @@
 #include "../build/bin/generated/shaders.hpp"
 
 // define the offset for the dataVbo
-#define STRIDE_SIZE 12 * sizeof(float) + sizeof(int) + sizeof(bool)
+#define STRIDE_SIZE sizeof(ElementData)
 
 void checkCompileError(GLuint shaderID){
     GLint success;
@@ -70,7 +70,7 @@ void Renderer::render(std::vector<std::unique_ptr<BaseObject>>& elements){
             GL_TRIANGLES,
             0,
             6,
-            elements.size()
+            elementsCount
         );
     
         glUseProgram(0);
@@ -158,13 +158,22 @@ void Renderer::init(){
     vertexShader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertexShader, 1, &shaders::shader_vert, NULL);
     glCompileShader(vertexShader);
-    checkCompileError(vertexShader);
-
+    try{
+        checkCompileError(vertexShader);
+    } catch (shader_compile_error){
+        glDeleteShader(vertexShader);
+        throw 0;
+    }
     fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fragmentShader,1,&shaders::shader_frag, NULL);
     glCompileShader(fragmentShader);
-    checkCompileError(fragmentShader);
-
+    try{
+        checkCompileError(vertexShader);
+    } catch (shader_compile_error){
+        glDeleteShader(fragmentShader);
+        throw 0;
+    }
+    
     shaderProgram = glCreateProgram();
     glAttachShader(shaderProgram, vertexShader);
     glAttachShader(shaderProgram, fragmentShader);
@@ -229,7 +238,7 @@ void Renderer::load(std::vector<std::unique_ptr<BaseObject>>& elements){
         });
 
     }
-
+    elementsCount = temp.size();
     glBindBuffer(GL_ARRAY_BUFFER, dataVbo);
     glBufferData(
         GL_ARRAY_BUFFER,
