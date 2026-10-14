@@ -5,9 +5,10 @@
 #include <GLFW/glfw3.h>
 #include "wrapper.hpp"
 #include "elements/baseObject.hpp"
+#include <algorithm>
+#include <memory>
 #include <string>
 #include <vector>
-#include <memory>
 
 enum class backgroundColors{
     
@@ -51,8 +52,11 @@ public:
     void run();
 
     template<Object T>
-    void addButton(T* object){
-        childrenElements.push_back(std::make_unique<T>(std::move(object)));
+    T& createElement(){
+        auto object = std::make_unique<T>();
+        T& reference = *object;
+        childrenElements.emplace_back(std::move(object));
+        return reference;
     }
 
     void setBackgroundColor();
