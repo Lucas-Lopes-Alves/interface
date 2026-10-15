@@ -33,7 +33,9 @@ Window& Window::operator=(Window&& other)noexcept{
 
     if (this != &other)
     {
-        glfwDestroyWindow(window);
+        if (window){
+            glfwDestroyWindow(window);
+        }
         this->height = other.height;
         this->width = other.width;
         this->title = std::move(other.title);
@@ -63,7 +65,7 @@ void Window::setMouseButtonCallback(GLFWmousebuttonfun func){
     glfwSetMouseButtonCallback(this->window, func);
 }
 
-void Window::setCursorPosCallback(void (*func)(GLFWwindow* window, double x, double y)){
+void Window::setCursorPosCallback(void (*func)(GLFWwindow*, double, double)){
     glfwSetCursorPosCallback(window, func);
 }
 
