@@ -6,7 +6,11 @@
 #include <string>
 
 void App::sizeCallback(GLFWwindow* window, int width, int height){
-    App* app = static_cast<App*>(glfwGetWindowUserPointer(window));
+    auto ptr = glfwGetWindowUserPointer(window);
+    if (ptr == nullptr){
+        throw std::runtime_error("Could not use the window pointer");
+    }
+    App* app = static_cast<App*>(ptr);
     app->onResize(width, height);
 }
 
