@@ -11,22 +11,27 @@
 #include <vector>
 #include <memory>
 #include "exceptions/shaderCompileError.hpp"
+#include "exceptions/programLinkError.hpp"
 #include "../build/bin/generated/shaders.hpp"
 
 // define the offset for the dataVbo
 #define STRIDE_SIZE sizeof(ElementData)
 
 void checkCompileError(GLuint shaderID){
-    GLint success;
+    GLint status;
     
     //Get the compilation status (GL_COMPILE_STATUS)
-    glGetShaderiv(shaderID, GL_COMPILE_STATUS, &success);
+    glGetShaderiv(shaderID, GL_COMPILE_STATUS, &status);
     
     //if result is GL_FALSE, the compilation failed
-    if (success == GL_FALSE) {
+    if (status == GL_FALSE) {
         GLint logLength;
         // Discover the error message length
         glGetShaderiv(shaderID, GL_INFO_LOG_LENGTH, &logLength);
+
+        if (logLength == 1 || logLength == 0){
+            throw shader_compile_error("Compilation failed with no Log");
+        }
         
         // Create a buffer to store the error message
         std::vector<GLchar> errorLog(logLength);
@@ -34,6 +39,28 @@ void checkCompileError(GLuint shaderID){
         
         // throw the execption
         throw shader_compile_error(&errorLog[0]);
+    }
+
+}
+
+void checkGlProgramLinkError(GLuint ProgramID){
+    GLint success;
+    
+    //Get the compilation status (GL_COMPILE_STATUS)
+    glGetProgramiv(ProgramID, GL_COMPILE_STATUS, &success);
+    
+    //if result is GL_FALSE, the compilation failed
+    if (success == GL_FALSE) {
+        GLint logLength;
+        // Discover the error message length
+        glGetProgramiv(ProgramID, GL_INFO_LOG_LENGTH, &logLength);
+        
+        // Create a buffer to store the error message
+        std::vector<GLchar> errorLog(logLength);
+        glGetProgramInfoLog(ProgramID, logLength, &logLength, &errorLog[0]);
+        
+        // throw the execption
+        throw glProgram_link_error(&errorLog[0]);
     }
 
 }
@@ -162,22 +189,31 @@ void Renderer::init(){
         checkCompileError(vertexShader);
     } catch (shader_compile_error){
         glDeleteShader(vertexShader);
-        throw 0;
+        throw;
     }
     fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fragmentShader,1,&shaders::shader_frag, NULL);
     glCompileShader(fragmentShader);
     try{
-        checkCompileError(vertexShader);
+        checkCompileError(fragmentShader);
     } catch (shader_compile_error){
         glDeleteShader(fragmentShader);
-        throw 0;
+        glDeleteShader(vertexShader);
+        throw;
     }
     
     shaderProgram = glCreateProgram();
     glAttachShader(shaderProgram, vertexShader);
     glAttachShader(shaderProgram, fragmentShader);
     glLinkProgram(shaderProgram);
+    try{
+        checkGlProgramLinkError(shaderProgram);
+    } catch (glProgram_link_error){
+        glDeleteProgram(shaderProgram);
+        glDeleteShader(fragmentShader);
+        glDeleteShader(vertexShader);
+        throw;
+    }
 
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
