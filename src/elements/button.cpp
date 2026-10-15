@@ -8,7 +8,8 @@ Button::Button(){
 }
 
 void Button::clicked(){
-    for (auto& funcs : callbacks){
+    auto callbacksCopy = callbacks;
+    for (auto& funcs : callbacksCopy){
         funcs();
     }
 }
